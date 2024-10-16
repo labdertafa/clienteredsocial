@@ -8,9 +8,9 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 12/10/2024
- * @updated 12/10/2024
+ * @updated 16/10/2024
  */
 public interface ClienteRedSocial {
     List<Status> getGlobalTimeline(int quantity) throws Exception;
@@ -20,4 +20,6 @@ public interface ClienteRedSocial {
     Relationship checkrelationship(String userId) throws Exception;
     
     boolean followAccount(String userId) throws Exception;
+    
+    boolean unfollowAccount(String userId) throws Exception;
 }

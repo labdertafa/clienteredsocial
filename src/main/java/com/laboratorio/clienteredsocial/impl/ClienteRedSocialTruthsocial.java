@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 13/10/2024
- * @updated 13/10/2024
+ * @updated 16/10/2024
  */
 public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     private final String accessToken;
@@ -60,5 +60,11 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     public boolean followAccount(String userId) throws Exception {
         TruthsocialAccountApi accountApi = new TruthsocialAccountApiImpl(this.accessToken);
         return accountApi.followAccount(userId);
+    }
+
+    @Override
+    public boolean unfollowAccount(String userId) throws Exception {
+        TruthsocialAccountApi accountApi = new TruthsocialAccountApiImpl(this.accessToken);
+        return accountApi.unfollowAccount(userId);
     }
 }

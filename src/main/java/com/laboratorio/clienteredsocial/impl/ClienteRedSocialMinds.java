@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 12/10/2024
- * @updated 12/10/2024
+ * @updated 16/10/2024
  */
 public class ClienteRedSocialMinds implements ClienteRedSocial {
     private String getUserIdFromURN(String urn) throws Exception {
@@ -71,5 +71,11 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
     public boolean followAccount(String userId) throws Exception {
         MindsAccountApi accountApi = new MindsAccountApiImpl();
         return accountApi.followAccount(userId);
+    }
+
+    @Override
+    public boolean unfollowAccount(String userId) throws Exception {
+        MindsAccountApi accountApi = new MindsAccountApiImpl();
+        return accountApi.unfollowAccount(userId);
     }
 }

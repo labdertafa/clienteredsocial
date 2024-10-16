@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 13/10/2024
- * @updated 13/10/2024
+ * @updated 16/10/2024
  */
 public class ClienteRedSocialGettr implements ClienteRedSocial {
     private final String accountId;
@@ -63,5 +63,11 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
     public boolean followAccount(String userId) throws Exception {
         GettrAccountApi accountApi = new GettrAccountApiImpl(this.accountId, this.accessToken);
         return accountApi.followAccount(userId);
+    }
+
+    @Override
+    public boolean unfollowAccount(String userId) throws Exception {
+        GettrAccountApi accountApi = new GettrAccountApiImpl(this.accountId, this.accessToken);
+        return accountApi.unfollowAccount(userId);
     }
 }

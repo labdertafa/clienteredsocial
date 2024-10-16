@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 13/10/2024
- * @updated 13/10/2024
+ * @updated 16/10/2024
  */
 public class ClienteRedSocialMastodon implements ClienteRedSocial {
     private final String urlBase;
@@ -62,5 +62,11 @@ public class ClienteRedSocialMastodon implements ClienteRedSocial {
     public boolean followAccount(String userId) throws Exception {
         MastodonAccountApi accountApi = new MastodonAccountApiImpl(this.urlBase, this.accessToken);
         return accountApi.followAccount(userId);
+    }
+
+    @Override
+    public boolean unfollowAccount(String userId) throws Exception {
+        MastodonAccountApi accountApi = new MastodonAccountApiImpl(this.urlBase, this.accessToken);
+        return accountApi.unfollowAccount(userId);
     }
 }

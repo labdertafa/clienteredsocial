@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 12/10/2024
- * @updated 12/10/2024
+ * @updated 16/10/2024
  */
 public class ClienteRedSocialParler implements ClienteRedSocial {
     private final String accessToken;
@@ -60,5 +60,12 @@ public class ClienteRedSocialParler implements ClienteRedSocial {
         ParlerAccountApi accountApi = new ParlerAccountApiImpl(accessToken);
         List<ParlerAccount> accounts = accountApi.getAccountsById(List.of(userId));
         return accountApi.followAccount(accounts.get(0).getUsername());
+    }
+
+    @Override
+    public boolean unfollowAccount(String userId) throws Exception {
+        ParlerAccountApi accountApi = new ParlerAccountApiImpl(accessToken);
+        List<ParlerAccount> accounts = accountApi.getAccountsById(List.of(userId));
+        return accountApi.unfollowAccount(accounts.get(0).getUsername());
     }
 }
