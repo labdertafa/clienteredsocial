@@ -23,10 +23,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ClienteRedSocialTest {
     protected static final Logger log = LogManager.getLogger(ClienteRedSocialTest.class);
 
-    private void verificarPosiblesSeguidores(NombreRedSocial nombreRedSocial, String accountId, String accessToken, String urlBase, String username, String password, String chatId) throws Exception {
+    private void verificarPosiblesSeguidores(NombreRedSocial nombreRedSocial, String accountId, String accessToken, String urlBase, String username, String password) throws Exception {
         int quantity = 50;
         Set<Account> accounts = new HashSet<>();
-        ClienteRedSocial cliente = ClienteRedSocialManager.getRedSocialInstance(nombreRedSocial, accountId, accessToken, urlBase, username, password, chatId);
+        ClienteRedSocial cliente = ClienteRedSocialManager.getRedSocialInstance(nombreRedSocial, accountId, accessToken, urlBase, username, password);
 
         List<Status> statuses = cliente.getGlobalTimeline(quantity);
 
@@ -59,8 +59,7 @@ public class ClienteRedSocialTest {
         String urlBase = "https://mastodon.social";
         String username = "";
         String password = "";
-        String chatId = "";
-        this.verificarPosiblesSeguidores(NombreRedSocial.MASTODON, accountId, accessToken, urlBase, username, password, chatId);
+        this.verificarPosiblesSeguidores(NombreRedSocial.MASTODON, accountId, accessToken, urlBase, username, password);
     } */
     
     /* @Test
@@ -70,8 +69,7 @@ public class ClienteRedSocialTest {
         String urlBase = "";
         String username = "";
         String password = "";
-        String chatId = "";
-        this.verificarPosiblesSeguidores(NombreRedSocial.BLUESKY, accountId, accessToken, urlBase, username, password, chatId);
+        this.verificarPosiblesSeguidores(NombreRedSocial.BLUESKY, accountId, accessToken, urlBase, username, password);
     } */
     
     /* @Test
@@ -81,8 +79,7 @@ public class ClienteRedSocialTest {
         String urlBase = "";
         String username = "";
         String password = "";
-        String chatId = "";
-        this.verificarPosiblesSeguidores(NombreRedSocial.TRUTHSOCIAL, accountId, accessToken, urlBase, username, password, chatId);
+        this.verificarPosiblesSeguidores(NombreRedSocial.TRUTHSOCIAL, accountId, accessToken, urlBase, username, password);
     } */
     
     /* @Test
@@ -92,8 +89,7 @@ public class ClienteRedSocialTest {
         String urlBase = "";
         String username = "";
         String password = "";
-        String chatId = "";
-        this.verificarPosiblesSeguidores(NombreRedSocial.GETTR, accountId, accessToken, urlBase, username, password, chatId);
+        this.verificarPosiblesSeguidores(NombreRedSocial.GETTR, accountId, accessToken, urlBase, username, password);
     } */
     
     /* @Test
@@ -103,8 +99,7 @@ public class ClienteRedSocialTest {
         String urlBase = "";
         String username = "";
         String password = "";
-        String chatId = "";
-        this.verificarPosiblesSeguidores(NombreRedSocial.GAB, accountId, accessToken, urlBase, username, password, chatId);
+        this.verificarPosiblesSeguidores(NombreRedSocial.GAB, accountId, accessToken, urlBase, username, password);
     } */
     
     /* @Test
@@ -114,8 +109,7 @@ public class ClienteRedSocialTest {
         String urlBase = "";
         String username = "";
         String password = "";
-        String chatId = "";
-        this.verificarPosiblesSeguidores(NombreRedSocial.MINDS, accountId, accessToken, urlBase, username, password, chatId);
+        this.verificarPosiblesSeguidores(NombreRedSocial.MINDS, accountId, accessToken, urlBase, username, password);
     } */
     
     /* @Test
@@ -125,8 +119,7 @@ public class ClienteRedSocialTest {
         String urlBase = "";
         String username = "";
         String password = "";
-        String chatId = "";
-        this.verificarPosiblesSeguidores(NombreRedSocial.PARLER, accountId, accessToken, urlBase, username, password, chatId);
+        this.verificarPosiblesSeguidores(NombreRedSocial.PARLER, accountId, accessToken, urlBase, username, password);
     } */
     
 /*    @Test

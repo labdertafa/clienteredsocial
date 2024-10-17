@@ -25,7 +25,7 @@ public class ClienteRedSocialManager {
     private ClienteRedSocialManager() {
     }
     
-    public static ClienteRedSocial getRedSocialInstance(NombreRedSocial redSocial, String userId, String accessToken, String urlBase, String username, String password, String chatId) {
+    public static ClienteRedSocial getRedSocialInstance(NombreRedSocial redSocial, String userId, String accessToken, String urlBase, String username, String password) {
         switch (redSocial) {
             case MASTODON -> {
                 return new ClienteRedSocialMastodon(urlBase, accessToken);
@@ -37,7 +37,7 @@ public class ClienteRedSocialManager {
                 return new ClienteRedSocialInstagram(username, password);
             }
             case TELEGRAM -> {
-                return new ClienteRedSocialTelegram(accessToken, chatId);
+                return new ClienteRedSocialTelegram(accessToken, username);
             }
             case LINKEDIN -> {
                 return new ClienteRedSocialLinkedin(accessToken, userId);
