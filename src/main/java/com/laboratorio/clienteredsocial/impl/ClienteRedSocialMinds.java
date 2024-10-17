@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.1
+ * @version 1.2
  * @created 12/10/2024
- * @updated 16/10/2024
+ * @updated 17/10/2024
  */
 public class ClienteRedSocialMinds implements ClienteRedSocial {
     private String getUserIdFromURN(String urn) throws Exception {
@@ -37,16 +37,6 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
         return "urn:user:" + userId;
     }
     
-    @Override
-    public List<Status> getGlobalTimeline(int quantity) throws Exception {
-        MindsStatusApi statusApi = new MindsStatusApiImpl();
-        List<MindsStatus> statuses = statusApi.getGlobalTimeline(quantity);
-        
-        return statuses.stream()
-                .map(s -> new Status(s.getGuid(), s.getMessage(), null, s.getOwner_guid(), ZonedDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(s.getTime_created())), ZoneId.systemDefault()), ZonedDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(s.getTime_updated())), ZoneId.systemDefault())))
-                .collect(Collectors.toList());
-    }
-
     @Override
     public Account getAccountById(String userId) throws Exception {
         MindsAccountApi accountApi = new MindsAccountApiImpl();
@@ -77,5 +67,33 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
     public boolean unfollowAccount(String userId) throws Exception {
         MindsAccountApi accountApi = new MindsAccountApiImpl();
         return accountApi.unfollowAccount(userId);
+    }
+    
+    @Override
+    public List<Status> getGlobalTimeline(int quantity) throws Exception {
+        MindsStatusApi statusApi = new MindsStatusApiImpl();
+        List<MindsStatus> statuses = statusApi.getGlobalTimeline(quantity);
+        
+        return statuses.stream()
+                .map(s -> new Status(s.getGuid(), s.getMessage(), null, s.getOwner_guid(), ZonedDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(s.getTime_created())), ZoneId.systemDefault()), ZonedDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(s.getTime_updated())), ZoneId.systemDefault())))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Status postStatus(String text) throws Exception {
+        MindsStatusApi statusApi = new MindsStatusApiImpl();
+        return new Status(statusApi.postStatus(text));
+    }
+
+    @Override
+    public Status postStatus(String text, String filePath) throws Exception {
+        MindsStatusApi statusApi = new MindsStatusApiImpl();
+        return new Status(statusApi.postStatus(text, filePath));
+    }
+
+    @Override
+    public boolean deleteStatus(String statusId) throws Exception {
+        MindsStatusApi statusApi = new MindsStatusApiImpl();
+        return statusApi.deleteStatus(statusId);
     }
 }
