@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.laboratorio</groupId>
     <artifactId>clienteredsocial</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
     <name>Cliente-Red-Social</name>
     <description>Cliente de red social que hace transparente la comunicación con varias redes sociales alternativas</description>
@@ -40,6 +40,11 @@
     
     <repositories>
         <repository>
+            <id>jitpack</id>
+            <url>https://jitpack.io</url>   
+        </repository>
+        
+        <repository>
             <id>github_00</id>
             <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/labdertafa/clienteredsocial/</url>
@@ -55,9 +60,24 @@
             <url>https://maven.pkg.github.com/labdertafa/blueskyapiinterface/</url>
         </repository>
         <repository>
+            <id>github_05</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/labdertafa/telegramapiinterface/</url>
+        </repository>
+        <repository>
+            <id>github_06</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/labdertafa/linkedinapiinterface/</url>
+        </repository>
+        <repository>
             <id>github_07</id>
             <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/labdertafa/truthsocialapiinterface/</url>
+        </repository>
+        <repository>
+            <id>github_08</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/labdertafa/threadsapiinterface/</url>
         </repository>
         <repository>
             <id>github_09</id>
@@ -82,6 +102,12 @@
     </repositories>
     
     <dependencies>
+        <dependency> 
+            <groupId>com.github.instagram4j</groupId>
+            <artifactId>instagram4j</artifactId>
+            <version>master-SNAPSHOT</version>
+        </dependency>
+        
         <dependency>
             <groupId>com.laboratorio</groupId>
             <artifactId>clientapilibrary</artifactId>
@@ -102,7 +128,25 @@
         
         <dependency>
             <groupId>com.laboratorio</groupId>
+            <artifactId>telegramapiinterface</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.laboratorio</groupId>
+            <artifactId>linkedinapiinterface</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.laboratorio</groupId>
             <artifactId>truthsocialapiinterface</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.laboratorio</groupId>
+            <artifactId>threadsapiinterface</artifactId>
             <version>1.1.2</version>
         </dependency>
         

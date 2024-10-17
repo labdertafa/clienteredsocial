@@ -6,6 +6,8 @@ import com.laboratorio.getrapiinterface.modelo.GettrStatus;
 import com.laboratorio.mastodonapiinterface.model.MastodonStatus;
 import com.laboratorio.mindsapiinterface.model.MindsStatus;
 import com.laboratorio.parlerapiinterface.model.ParlerStatus;
+import com.laboratorio.telegramapiinterface.model.TelegramStatus;
+import com.laboratorio.threadsapiinterface.model.ThreadsStatus;
 import com.laboratorio.truthsocialapiinterface.model.TruthsocialStatus;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -18,7 +20,7 @@ import lombok.Setter;
 /**
  *
  * @author Rafael
- * @version 1.1
+ * @version 1.2
  * @created 12/10/2024
  * @updated 17/10/2024
  */
@@ -93,6 +95,26 @@ public class Status {
         this.ownerId = status.getUser().getUserId();
         this.createdAt = ZonedDateTime.parse(status.getCreatedAt(), DateTimeFormatter.ISO_DATE_TIME);
         this.updatedAt = ZonedDateTime.parse(status.getUpdatedAt(), DateTimeFormatter.ISO_DATE_TIME);
+    }
+    
+    public Status(TelegramStatus status) {
+        this.id = Integer.toString(status.getMessage_id());
+        this.body = status.getText();
+        this.language = null;
+        this.ownerId = status.getSender_chat().getUsername();
+        this.createdAt = ZonedDateTime.ofInstant(Instant.ofEpochMilli(status.getDate()), ZoneId.systemDefault());
+        this.updatedAt = ZonedDateTime.ofInstant(Instant.ofEpochMilli(status.getDate()), ZoneId.systemDefault());
+    }
+    
+    public Status(ThreadsStatus status) {
+        this.id = status.getId();
+        this.body = status.getText();
+        this.language = null;
+        this.ownerId = status.getOwner().getId();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+        ZonedDateTime creationDate = ZonedDateTime.parse(status.getTimestamp(), formatter);
+        this.createdAt = creationDate;
+        this.updatedAt = creationDate;
     }
     
     @Override
