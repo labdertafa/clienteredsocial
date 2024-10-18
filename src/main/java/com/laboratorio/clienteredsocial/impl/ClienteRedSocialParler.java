@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @author Rafael
  * @version 1.2
  * @created 12/10/2024
- * @updated 17/10/2024
+ * @updated 18/10/2024
  */
 public class ClienteRedSocialParler implements ClienteRedSocial {
     private final String accessToken;
@@ -78,6 +78,6 @@ public class ClienteRedSocialParler implements ClienteRedSocial {
 
     @Override
     public boolean deleteStatus(String statusId) throws Exception {
-        return this.deleteStatus(statusId);
+        return this.statusApi.deleteStatus(statusId);
     }
 }

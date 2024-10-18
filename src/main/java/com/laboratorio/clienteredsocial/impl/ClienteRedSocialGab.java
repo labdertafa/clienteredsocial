@@ -15,15 +15,18 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author Rafael
  * @version 1.2
  * @created 13/10/2024
- * @updated 17/10/2024
+ * @updated 18/10/2024
  */
 public class ClienteRedSocialGab implements ClienteRedSocial {
+    private static final Logger log = LogManager.getLogger(ClienteRedSocialGab.class);
     private final String accessToken;
     private final GabAccountApi accountApi;
     private final GabStatusApi statusApi;
@@ -69,11 +72,23 @@ public class ClienteRedSocialGab implements ClienteRedSocial {
 
     @Override
     public Status postStatus(String text) throws Exception {
+        // Si la publicación hace mención de la página del laboratorio de rafa
+        if (text.contains("laboratoriorafa.mooo.com")) {
+            log.info("En Instagram, no se puede mencionar la página del Laboratorio. Se descarta la publicación.");
+            return null;
+        }
+        
         return new Status(this.statusApi.postStatus(text));
     }
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
+        // Si la publicación hace mención de la página del laboratorio de rafa
+        if (text.contains("laboratoriorafa.mooo.com")) {
+            log.info("En Instagram, no se puede mencionar la página del Laboratorio. Se descarta la publicación.");
+            return null;
+        }
+        
         return new Status(this.statusApi.postStatus(text, filePath));
     }
 

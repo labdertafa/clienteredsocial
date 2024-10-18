@@ -7,6 +7,8 @@ import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.threadsapiinterface.ThreadsStatusApi;
 import com.laboratorio.threadsapiinterface.impl.ThreadsStatusApiImpl;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -16,6 +18,7 @@ import java.util.List;
  * @updated 17/10/2024
  */
 public class ClienteRedSocialThreads implements ClienteRedSocial {
+    private static final Logger log = LogManager.getLogger(ClienteRedSocialThreads.class);
     private final String accessToken;
     private final ThreadsStatusApi statusApi;
 
@@ -51,11 +54,23 @@ public class ClienteRedSocialThreads implements ClienteRedSocial {
 
     @Override
     public Status postStatus(String text) throws Exception {
+        // Si la publicación hace mención de la página del laboratorio de rafa
+        if (text.contains("laboratoriorafa.mooo.com")) {
+            log.info("En Instagram, no se puede mencionar la página del Laboratorio. Se descarta la publicación.");
+            return null;
+        }
+        
         return new Status(this.statusApi.postStatus(text));
     }
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
+        // Si la publicación hace mención de la página del laboratorio de rafa
+        if (text.contains("laboratoriorafa.mooo.com")) {
+            log.info("En Instagram, no se puede mencionar la página del Laboratorio. Se descarta la publicación.");
+            return null;
+        }
+        
         return new Status(this.statusApi.postStatus(text, filePath));
     }
 
