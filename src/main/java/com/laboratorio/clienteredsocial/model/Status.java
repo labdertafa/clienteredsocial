@@ -22,7 +22,7 @@ import lombok.Setter;
  * @author Rafael
  * @version 1.2
  * @created 12/10/2024
- * @updated 17/10/2024
+ * @updated 18/10/2024
  */
 
 @Getter @Setter @AllArgsConstructor
@@ -101,7 +101,7 @@ public class Status {
         this.id = Integer.toString(status.getMessage_id());
         this.body = status.getText();
         this.language = null;
-        this.ownerId = status.getSender_chat().getUsername();
+        this.ownerId = Long.toString(status.getFrom().getId());
         this.createdAt = ZonedDateTime.ofInstant(Instant.ofEpochMilli(status.getDate()), ZoneId.systemDefault());
         this.updatedAt = ZonedDateTime.ofInstant(Instant.ofEpochMilli(status.getDate()), ZoneId.systemDefault());
     }
