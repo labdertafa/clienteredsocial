@@ -3,14 +3,15 @@ package com.laboratorio.clienteredsocial;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Status;
+import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import java.util.List;
 
 /**
  *
  * @author Rafael
- * @version 1.2
+ * @version 1.3
  * @created 12/10/2024
- * @updated 17/10/2024
+ * @updated 21/10/2024
  */
 public interface ClienteRedSocial {
     // Operaciones sobre la entidad Account
@@ -30,4 +31,7 @@ public interface ClienteRedSocial {
     Status postStatus(String text, String filePath) throws Exception;
     
     boolean deleteStatus(String statusId) throws Exception;
+    
+    // Operaciones sobre la entidad Notificacion
+    NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception;
 }

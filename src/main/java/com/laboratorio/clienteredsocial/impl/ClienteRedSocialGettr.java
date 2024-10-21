@@ -2,15 +2,21 @@ package com.laboratorio.clienteredsocial.impl;
 
 import com.laboratorio.clienteredsocial.ClienteRedSocial;
 import com.laboratorio.clienteredsocial.model.Account;
+import com.laboratorio.clienteredsocial.model.Notificacion;
+import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Status;
+import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.getrapiinterface.GettrAccountApi;
+import com.laboratorio.getrapiinterface.GettrNotificationApi;
 import com.laboratorio.getrapiinterface.GettrStatusApi;
 import com.laboratorio.getrapiinterface.impl.GettrAccountApiImpl;
+import com.laboratorio.getrapiinterface.impl.GettrNotificationApiImpl;
 import com.laboratorio.getrapiinterface.impl.GettrStatusApiImpl;
 import com.laboratorio.getrapiinterface.modelo.GettrAccount;
 import com.laboratorio.getrapiinterface.modelo.GettrRelationship;
 import com.laboratorio.getrapiinterface.modelo.GettrStatus;
+import com.laboratorio.getrapiinterface.modelo.response.GettrNotificationListResponse;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -20,9 +26,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.2
+ * @version 1.3
  * @created 13/10/2024
- * @updated 17/10/2024
+ * @updated 21/10/2024
  */
 public class ClienteRedSocialGettr implements ClienteRedSocial {
     private final String accountId;
@@ -37,6 +43,9 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
         this.statusApi = new GettrStatusApiImpl(this.accountId, this.accessToken);
     }
 
+    /* ************************************
+       Operaciones sobre la entidad Account
+       ************************************ */
     @Override
     public Account getAccountById(String userId) throws Exception {
         GettrAccount account = this.accountApi.getAccountById(userId);
@@ -60,7 +69,10 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
     public boolean unfollowAccount(String userId) throws Exception {
         return this.accountApi.unfollowAccount(userId);
     }
-    
+
+    /* ***********************************
+       Operaciones sobre la entidad Status
+       *********************************** */    
     @Override
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
         List<GettrStatus> statuses = this.statusApi.getGlobalTimeline(quantity);
@@ -83,5 +95,20 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
     @Override
     public boolean deleteStatus(String statusId) throws Exception {
         return this.statusApi.deleteStatus(statusId);
+    }
+
+    /* *****************************************
+       Operaciones sobre la entidad Notificacion
+       ****************************************** */
+    @Override
+    public NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception {
+        GettrNotificationApi notificationApi = new GettrNotificationApiImpl(this.accountId, this.accessToken);
+        GettrNotificationListResponse response = notificationApi.getAllNotifications(posicionInicial);
+        List<Notificacion> notificaciones = response.getNotifications().stream()
+                .filter(notif -> notif.getAct().equalsIgnoreCase("f"))
+                .map(notif -> new Notificacion(notif, NotificationType.FOLLOW))
+                .collect(Collectors.toList());
+        
+        return new NotificationListResponse(response.getLastNotif(), notificaciones);
     }
 }

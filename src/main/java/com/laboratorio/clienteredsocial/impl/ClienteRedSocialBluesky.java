@@ -1,19 +1,26 @@
 package com.laboratorio.clienteredsocial.impl;
 
 import com.laboratorio.blueskyapiinterface.BlueskyAccountApi;
+import com.laboratorio.blueskyapiinterface.BlueskyNotificationApi;
 import com.laboratorio.blueskyapiinterface.BlueskyStatusApi;
 import com.laboratorio.blueskyapiinterface.impl.BlueskyAccountApiImpl;
+import com.laboratorio.blueskyapiinterface.impl.BlueskyNotificationApiImpl;
 import com.laboratorio.blueskyapiinterface.impl.BlueskyStatusApiImpl;
 import com.laboratorio.blueskyapiinterface.model.BlueskyAccount;
+import com.laboratorio.blueskyapiinterface.model.BlueskyNotificationType;
 import com.laboratorio.blueskyapiinterface.model.BlueskyRelationship;
 import com.laboratorio.blueskyapiinterface.model.BlueskyStatus;
+import com.laboratorio.blueskyapiinterface.model.response.BlueskyNotificationListResponse;
 import com.laboratorio.blueskyapiinterface.model.response.BlueskyRelationshipsResponse;
 import com.laboratorio.clientapilibrary.utils.ImageMetadata;
 import com.laboratorio.clientapilibrary.utils.PostUtils;
 import com.laboratorio.clienteredsocial.ClienteRedSocial;
 import com.laboratorio.clienteredsocial.model.Account;
+import com.laboratorio.clienteredsocial.model.Notificacion;
+import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Status;
+import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -22,9 +29,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.2
+ * @version 1.3
  * @created 15/10/2024
- * @updated 17/10/2024
+ * @updated 21/10/2024
  */
 public class ClienteRedSocialBluesky implements ClienteRedSocial {
     private final String accountId;
@@ -39,6 +46,9 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
         this.statusApi = new BlueskyStatusApiImpl(this.accessToken);
     }
 
+    /* ************************************
+       Operaciones sobre la entidad Account
+       ************************************ */
     @Override
     public Account getAccountById(String userId) throws Exception {
         BlueskyAccount account = this.accountApi.getAccountById(userId);
@@ -63,7 +73,10 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
     public boolean unfollowAccount(String userId) throws Exception {
         return this.accountApi.unfollowAccount(this.accountId, userId);
     }
-    
+
+    /* ***********************************
+       Operaciones sobre la entidad Status
+       *********************************** */    
     @Override
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
         List<BlueskyStatus> statuses = this.statusApi.getGlobalTimeline(quantity);
@@ -90,5 +103,20 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
     @Override
     public boolean deleteStatus(String uri) throws Exception {
         return this.statusApi.deleteStatus(this.accountId, uri);
+    }
+
+    /* *****************************************
+       Operaciones sobre la entidad Notificacion
+       ****************************************** */
+    @Override
+    public NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception {
+        BlueskyNotificationApi notificationApi = new BlueskyNotificationApiImpl(this.accessToken);
+        BlueskyNotificationListResponse response = notificationApi.getAllNotifications(0, posicionInicial);
+        List<Notificacion> notificaciones = response.getNotifications().stream()
+                .filter(notif -> notif.getReason().toUpperCase().equals(BlueskyNotificationType.FOLLOW.name()))
+                .map(notif -> new Notificacion(notif, NotificationType.FOLLOW))
+                .collect(Collectors.toList());
+        
+        return new NotificationListResponse(response.getSeenAt(), notificaciones);
     }
 }

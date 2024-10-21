@@ -2,14 +2,20 @@ package com.laboratorio.clienteredsocial.impl;
 
 import com.laboratorio.clienteredsocial.ClienteRedSocial;
 import com.laboratorio.clienteredsocial.model.Account;
+import com.laboratorio.clienteredsocial.model.Notificacion;
+import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Status;
+import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.mindsapiinterface.MindsAccountApi;
+import com.laboratorio.mindsapiinterface.MindsNotificationApi;
 import com.laboratorio.mindsapiinterface.MindsStatusApi;
 import com.laboratorio.mindsapiinterface.impl.MindsAccountApiImpl;
+import com.laboratorio.mindsapiinterface.impl.MindsNotificationApiImpl;
 import com.laboratorio.mindsapiinterface.impl.MindsStatusApiImpl;
 import com.laboratorio.mindsapiinterface.model.MindsAccount;
 import com.laboratorio.mindsapiinterface.model.MindsStatus;
+import com.laboratorio.mindsapiinterface.model.response.MindsNotificationsResponse;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -19,9 +25,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.2
+ * @version 1.3
  * @created 12/10/2024
- * @updated 17/10/2024
+ * @updated 21/10/2024
  */
 public class ClienteRedSocialMinds implements ClienteRedSocial {
     private String getUserIdFromURN(String urn) throws Exception {
@@ -36,7 +42,10 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
     private String getURNFromUserId(String userId) {
         return "urn:user:" + userId;
     }
-    
+
+    /* ************************************
+       Operaciones sobre la entidad Account
+       ************************************ */    
     @Override
     public Account getAccountById(String userId) throws Exception {
         MindsAccountApi accountApi = new MindsAccountApiImpl();
@@ -69,6 +78,9 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
         return accountApi.unfollowAccount(userId);
     }
     
+    /* ***********************************
+       Operaciones sobre la entidad Status
+       *********************************** */
     @Override
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
         MindsStatusApi statusApi = new MindsStatusApiImpl();
@@ -95,5 +107,20 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
     public boolean deleteStatus(String statusId) throws Exception {
         MindsStatusApi statusApi = new MindsStatusApiImpl();
         return statusApi.deleteStatus(statusId);
+    }
+
+    /* *****************************************
+       Operaciones sobre la entidad Notificacion
+       ****************************************** */
+    @Override
+    public NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception {
+        MindsNotificationApi notificationApi = new MindsNotificationApiImpl();
+        MindsNotificationsResponse response = notificationApi.getAllNotifications(0, posicionInicial);
+        List<Notificacion> notificaciones = response.getNotifications().stream()
+                .filter(notif -> notif.getType().equalsIgnoreCase("subscribe"))
+                .map(notif -> new Notificacion(notif, NotificationType.FOLLOW))
+                .collect(Collectors.toList());
+        
+        return new NotificationListResponse(response.getLoadNext(), notificaciones);
     }
 }

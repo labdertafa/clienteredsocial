@@ -6,6 +6,7 @@ import com.laboratorio.clienteredsocial.ClienteRedSocial;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Status;
+import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import java.io.File;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.0
  * @created 17/10/2024
- * @updated 17/10/2024
+ * @updated 21/10/2024
  */
 public class ClienteRedSocialInstagram implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialInstagram.class);
@@ -121,6 +122,11 @@ public class ClienteRedSocialInstagram implements ClienteRedSocial {
 
     @Override
     public boolean deleteStatus(String statusId) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
