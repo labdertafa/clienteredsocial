@@ -69,7 +69,7 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
         MindsAccountApi accountApi = new MindsAccountApiImpl();
-        return accountApi.getFollowingsIds(userId, limit);
+        return accountApi.getFollowersIds(userId, limit);
     }
     
     @Override

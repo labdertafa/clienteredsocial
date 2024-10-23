@@ -72,7 +72,7 @@ public class ClienteRedSocialMastodon implements ClienteRedSocial {
     
     @Override
     public List<String> getFollowingsIds(String userId, int limit) throws Exception {
-        return this.getFollowingsIds(userId, limit);
+        return this.accountApi.getFollowingsIds(userId, limit);
     }
 
     @Override

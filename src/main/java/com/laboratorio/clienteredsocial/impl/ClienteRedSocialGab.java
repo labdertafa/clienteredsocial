@@ -31,7 +31,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.4
  * @created 13/10/2024
- * @updated 22/10/2024
+ * @updated 23/10/2024
  */
 public class ClienteRedSocialGab implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialGab.class);
@@ -64,7 +64,7 @@ public class ClienteRedSocialGab implements ClienteRedSocial {
     
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
-        return this.accountApi.getFollowingsIds(userId, limit);
+        return this.accountApi.getFollowersIds(userId, limit);
     }
     
     @Override

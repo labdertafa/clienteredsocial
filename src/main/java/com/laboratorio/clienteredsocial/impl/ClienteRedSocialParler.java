@@ -56,12 +56,14 @@ public class ClienteRedSocialParler implements ClienteRedSocial {
     
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
-        return this.accountApi.getFollowersIds(userId);
+        List<ParlerAccount> accounts = this.accountApi.getAccountsById(List.of(userId));
+        return this.accountApi.getFollowersIds(accounts.get(0).getUsername());
     }
     
     @Override
     public List<Account> getFollowers(String userId, int limit) throws Exception {
-        ParlerAccountList response = this.accountApi.getFollowers(userId);
+        List<ParlerAccount> accounts = this.accountApi.getAccountsById(List.of(userId));
+        ParlerAccountList response = this.accountApi.getFollowers(accounts.get(0).getUsername());
         return response.getAccounts().stream()
                 .map(account -> new Account(account))
                 .collect(Collectors.toList());
@@ -69,12 +71,14 @@ public class ClienteRedSocialParler implements ClienteRedSocial {
     
     @Override
     public List<String> getFollowingsIds(String userId, int limit) throws Exception {
-        return this.accountApi.getFollowingsIds(userId);
+        List<ParlerAccount> accounts = this.accountApi.getAccountsById(List.of(userId));
+        return this.accountApi.getFollowingsIds(accounts.get(0).getUsername());
     }
 
     @Override
     public List<Account> getFollowings(String userId, int limit) throws Exception {
-        ParlerAccountList response = this.accountApi.getFollowings(userId);
+        List<ParlerAccount> accounts = this.accountApi.getAccountsById(List.of(userId));
+        ParlerAccountList response = this.accountApi.getFollowings(accounts.get(0).getUsername());
         return response.getAccounts().stream()
                 .map(account -> new Account(account))
                 .collect(Collectors.toList());
