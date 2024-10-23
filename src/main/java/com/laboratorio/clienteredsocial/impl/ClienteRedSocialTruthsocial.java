@@ -18,17 +18,15 @@ import com.laboratorio.truthsocialapiinterface.model.TruthsocialNotificationType
 import com.laboratorio.truthsocialapiinterface.model.TruthsocialRelationship;
 import com.laboratorio.truthsocialapiinterface.model.TruthsocialStatus;
 import com.laboratorio.truthsocialapiinterface.model.response.TruthsocialNotificationListResponse;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  *
  * @author Rafael
- * @version 1.3
+ * @version 1.4
  * @created 13/10/2024
- * @updated 21/10/2024
+ * @updated 23/10/2024
  */
 public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     private final String accessToken;
@@ -47,8 +45,7 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         TruthsocialAccount account = this.accountApi.getAccountById(userId);
-        
-        return new Account(account.getId(), ZonedDateTime.parse(account.getCreated_at(), DateTimeFormatter.ISO_DATE_TIME), account.getUsername(), account.getDisplay_name(), null, account.getFollowers_count(), account.getFollowing_count(), account.getStatuses_count());
+        return new Account(account);
     }
 
     @Override
@@ -56,6 +53,29 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
         TruthsocialRelationship relationship = this.accountApi.checkrelationships(List.of(userId)).get(0);
         
         return new Relationship(userId, relationship.isFollowed_by(), relationship.isFollowing());
+    }
+    
+    @Override
+    public List<String> getFollowersIds(String userId, int limit) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public List<Account> getFollowers(String userId, int limit) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public List<String> getFollowingsIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowingsIds(userId);
+    }
+
+    @Override
+    public List<Account> getFollowings(String userId, int limit) throws Exception {
+        List<TruthsocialAccount> accounts = this.accountApi.getFollowings(userId, 0);
+        return accounts.stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
     }
 
     @Override

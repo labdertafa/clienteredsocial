@@ -16,6 +16,7 @@ import com.laboratorio.getrapiinterface.impl.GettrStatusApiImpl;
 import com.laboratorio.getrapiinterface.modelo.GettrAccount;
 import com.laboratorio.getrapiinterface.modelo.GettrRelationship;
 import com.laboratorio.getrapiinterface.modelo.GettrStatus;
+import com.laboratorio.getrapiinterface.modelo.response.GettrAccountListResponse;
 import com.laboratorio.getrapiinterface.modelo.response.GettrNotificationListResponse;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -26,9 +27,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.3
+ * @version 1.4
  * @created 13/10/2024
- * @updated 21/10/2024
+ * @updated 22/10/2024
  */
 public class ClienteRedSocialGettr implements ClienteRedSocial {
     private final String accountId;
@@ -49,8 +50,7 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         GettrAccount account = this.accountApi.getAccountById(userId);
-        
-        return new Account(account.get_id(), ZonedDateTime.ofInstant(Instant.ofEpochMilli(account.getCdate()), ZoneId.systemDefault()), account.getUsername(), account.getNickname(), account.getLang(), account.getFlg(), account.getFlw(), null);
+        return new Account(account);
     }
 
     @Override
@@ -58,6 +58,32 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
         GettrRelationship relationship = this.accountApi.checkrelationship(userId);
         
         return new Relationship(userId, relationship.isFollowedBy(), relationship.isFollowing());
+    }
+    
+    @Override
+    public List<String> getFollowersIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowersIds(userId);
+    }
+    
+    @Override
+    public List<Account> getFollowers(String userId, int limit) throws Exception {
+        GettrAccountListResponse response = this.accountApi.getFollowers(userId);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    public List<String> getFollowingsIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowingsIds(userId);
+    }
+
+    @Override
+    public List<Account> getFollowings(String userId, int limit) throws Exception {
+        GettrAccountListResponse response = this.accountApi.getFollowings(userId);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
     }
 
     @Override

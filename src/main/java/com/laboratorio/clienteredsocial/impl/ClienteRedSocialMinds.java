@@ -15,6 +15,7 @@ import com.laboratorio.mindsapiinterface.impl.MindsNotificationApiImpl;
 import com.laboratorio.mindsapiinterface.impl.MindsStatusApiImpl;
 import com.laboratorio.mindsapiinterface.model.MindsAccount;
 import com.laboratorio.mindsapiinterface.model.MindsStatus;
+import com.laboratorio.mindsapiinterface.model.response.MindsAccountListResponse;
 import com.laboratorio.mindsapiinterface.model.response.MindsNotificationsResponse;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -52,7 +53,7 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
         String userURN = this.getURNFromUserId(userId);
         MindsAccount account = accountApi.getAccountsById(List.of(userURN)).get(0);
         
-        return new Account(account.getUrn(), ZonedDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(account.getTime_created())), ZoneId.systemDefault()), account.getUsername(), account.getName(), account.getLanguage(), account.getSubscribers_count(), account.getSubscriptions_count(), null);
+        return new Account(account);
     }
 
     // Minds usa varios identificadores. Acá usamos el identificador URN.
@@ -63,6 +64,36 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
         MindsAccount account = accountApi.getAccountsById(List.of(userURN)).get(0);
         
         return new Relationship(userId, account.isSubscriber(), account.isSubscribed());
+    }
+    
+    @Override
+    public List<String> getFollowersIds(String userId, int limit) throws Exception {
+        MindsAccountApi accountApi = new MindsAccountApiImpl();
+        return accountApi.getFollowingsIds(userId, limit);
+    }
+    
+    @Override
+    public List<Account> getFollowers(String userId, int limit) throws Exception {
+        MindsAccountApi accountApi = new MindsAccountApiImpl();
+        MindsAccountListResponse response = accountApi.getFollowers(userId, limit);
+        return response.getUsers().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    public List<String> getFollowingsIds(String userId, int limit) throws Exception {
+        MindsAccountApi accountApi = new MindsAccountApiImpl();
+        return accountApi.getFollowingsIds(userId, limit);
+    }
+
+    @Override
+    public List<Account> getFollowings(String userId, int limit) throws Exception {
+        MindsAccountApi accountApi = new MindsAccountApiImpl();
+        MindsAccountListResponse response = accountApi.getFollowings(userId, limit);
+        return response.getUsers().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
     }
 
     // Minds usa varios identificadores. Acá usamos el identificador URN: urn:user:userId.

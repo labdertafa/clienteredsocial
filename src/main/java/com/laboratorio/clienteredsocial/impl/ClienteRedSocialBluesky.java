@@ -10,6 +10,7 @@ import com.laboratorio.blueskyapiinterface.model.BlueskyAccount;
 import com.laboratorio.blueskyapiinterface.model.BlueskyNotificationType;
 import com.laboratorio.blueskyapiinterface.model.BlueskyRelationship;
 import com.laboratorio.blueskyapiinterface.model.BlueskyStatus;
+import com.laboratorio.blueskyapiinterface.model.response.BlueskyFollowListResponse;
 import com.laboratorio.blueskyapiinterface.model.response.BlueskyNotificationListResponse;
 import com.laboratorio.blueskyapiinterface.model.response.BlueskyRelationshipsResponse;
 import com.laboratorio.clientapilibrary.utils.ImageMetadata;
@@ -21,17 +22,15 @@ import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  *
  * @author Rafael
- * @version 1.3
+ * @version 1.4
  * @created 15/10/2024
- * @updated 21/10/2024
+ * @updated 23/10/2024
  */
 public class ClienteRedSocialBluesky implements ClienteRedSocial {
     private final String accountId;
@@ -53,7 +52,7 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
     public Account getAccountById(String userId) throws Exception {
         BlueskyAccount account = this.accountApi.getAccountById(userId);
         
-        return new Account(account.getDid(), ZonedDateTime.parse(account.getCreatedAt(), DateTimeFormatter.ISO_DATE_TIME), account.getHandle(), account.getDisplayName(), null, account.getFollowersCount(), account.getFollowsCount(), account.getPostsCount());
+        return new Account(account);
     }
 
     @Override
@@ -62,6 +61,32 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
         BlueskyRelationship relationship = relationshipsResponse.getRelationships().get(0);
         
         return new Relationship(userId, relationship.isFollowedBy(), relationship.isFollowing());
+    }
+    
+    @Override
+    public List<String> getFollowersIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowersIds(userId, limit);
+    }
+    
+    @Override
+    public List<Account> getFollowers(String userId, int limit) throws Exception {
+        BlueskyFollowListResponse response = this.accountApi.getFollowers(userId, limit);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    public List<String> getFollowingsIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowingsIds(userId, limit);
+    }
+
+    @Override
+    public List<Account> getFollowings(String userId, int limit) throws Exception {
+        BlueskyFollowListResponse response = this.accountApi.getFollowings(userId, limit);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
     }
 
     @Override

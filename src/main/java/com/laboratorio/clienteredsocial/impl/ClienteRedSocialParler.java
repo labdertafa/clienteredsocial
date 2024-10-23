@@ -14,6 +14,7 @@ import com.laboratorio.parlerapiinterface.impl.ParlerAccountApiImpl;
 import com.laboratorio.parlerapiinterface.impl.ParlerNotificationApiImpl;
 import com.laboratorio.parlerapiinterface.impl.ParlerStatusApiImpl;
 import com.laboratorio.parlerapiinterface.model.ParlerAccount;
+import com.laboratorio.parlerapiinterface.model.ParlerAccountList;
 import com.laboratorio.parlerapiinterface.model.ParlerNotificationList;
 import com.laboratorio.parlerapiinterface.model.ParlerStatus;
 import java.util.List;
@@ -22,9 +23,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.3
+ * @version 1.4
  * @created 12/10/2024
- * @updated 21/10/2024
+ * @updated 23/10/2024
  */
 public class ClienteRedSocialParler implements ClienteRedSocial {
     private final String accessToken;
@@ -43,8 +44,7 @@ public class ClienteRedSocialParler implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         ParlerAccount account = this.accountApi.getAccountsById(List.of(userId)).get(0);
-        
-        return new Account(account.getUlid(), null, account.getUsername(), account.getName(), null, account.getFollowers(), account.getFollowing(), account.getPostCount());
+        return new Account(account);
     }
     
     @Override
@@ -52,6 +52,32 @@ public class ClienteRedSocialParler implements ClienteRedSocial {
         ParlerAccount account = this.accountApi.getAccountsById(List.of(userId)).get(0);
         
         return new Relationship(userId, account.getProfileEngagement().isFollowingYou(), account.getProfileEngagement().isFollowing());
+    }
+    
+    @Override
+    public List<String> getFollowersIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowersIds(userId);
+    }
+    
+    @Override
+    public List<Account> getFollowers(String userId, int limit) throws Exception {
+        ParlerAccountList response = this.accountApi.getFollowers(userId);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    public List<String> getFollowingsIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowingsIds(userId);
+    }
+
+    @Override
+    public List<Account> getFollowings(String userId, int limit) throws Exception {
+        ParlerAccountList response = this.accountApi.getFollowings(userId);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
     }
 
     @Override

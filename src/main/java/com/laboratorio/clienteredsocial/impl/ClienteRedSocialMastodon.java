@@ -17,18 +17,17 @@ import com.laboratorio.mastodonapiinterface.model.MastodonAccount;
 import com.laboratorio.mastodonapiinterface.model.MastodonNotificationType;
 import com.laboratorio.mastodonapiinterface.model.MastodonRelationship;
 import com.laboratorio.mastodonapiinterface.model.MastodonStatus;
+import com.laboratorio.mastodonapiinterface.model.response.MastodonAccountListResponse;
 import com.laboratorio.mastodonapiinterface.model.response.MastodonNotificationListResponse;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  *
  * @author Rafael
- * @version 1.3
+ * @version 1.4
  * @created 13/10/2024
- * @updated 21/10/2024
+ * @updated 23/10/2024
  */
 public class ClienteRedSocialMastodon implements ClienteRedSocial {
     private final String urlBase;
@@ -49,15 +48,39 @@ public class ClienteRedSocialMastodon implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         MastodonAccount account = this.accountApi.getAccountById(userId);
-        
-        return new Account(account.getId(), ZonedDateTime.parse(account.getCreated_at(), DateTimeFormatter.ISO_DATE_TIME), account.getUsername(), account.getDisplay_name(), null, account.getFollowers_count(), account.getFollowing_count(), account.getStatuses_count());
+        return new Account(account);
     }
 
     @Override
     public Relationship checkrelationship(String userId) throws Exception {
         MastodonRelationship relationship = this.accountApi.checkrelationships(List.of(userId)).get(0);
-        
         return new Relationship(userId, relationship.isFollowed_by(), relationship.isFollowing());
+    }
+    
+    @Override
+    public List<String> getFollowersIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowersIds(userId, limit);
+    }
+    
+    @Override
+    public List<Account> getFollowers(String userId, int limit) throws Exception {
+        MastodonAccountListResponse response = this.accountApi.getFollowers(userId, limit);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    public List<String> getFollowingsIds(String userId, int limit) throws Exception {
+        return this.getFollowingsIds(userId, limit);
+    }
+
+    @Override
+    public List<Account> getFollowings(String userId, int limit) throws Exception {
+        MastodonAccountListResponse response = this.accountApi.getFollowings(userId, limit);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
     }
 
     @Override

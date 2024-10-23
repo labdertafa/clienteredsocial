@@ -16,6 +16,7 @@ import com.laboratorio.gabapiinterface.impl.GabStatusApiImpl;
 import com.laboratorio.gabapiinterface.model.GabAccount;
 import com.laboratorio.gabapiinterface.model.GabRelationship;
 import com.laboratorio.gabapiinterface.model.GabStatus;
+import com.laboratorio.gabapiinterface.model.response.GabAccountListResponse;
 import com.laboratorio.gabapiinterface.model.response.GabNotificationListResponse;
 import com.laboratorio.mastodonapiinterface.model.MastodonNotificationType;
 import java.time.ZonedDateTime;
@@ -28,9 +29,9 @@ import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Rafael
- * @version 1.3
+ * @version 1.4
  * @created 13/10/2024
- * @updated 21/10/2024
+ * @updated 22/10/2024
  */
 public class ClienteRedSocialGab implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialGab.class);
@@ -59,6 +60,32 @@ public class ClienteRedSocialGab implements ClienteRedSocial {
         GabRelationship relationship = this.accountApi.checkrelationships(List.of(userId)).get(0);
         
         return new Relationship(userId, relationship.isFollowed_by(), relationship.isFollowing());
+    }
+    
+    @Override
+    public List<String> getFollowersIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowingsIds(userId, limit);
+    }
+    
+    @Override
+    public List<Account> getFollowers(String userId, int limit) throws Exception {
+        GabAccountListResponse response = this.accountApi.getFollowers(userId, limit);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+    public List<String> getFollowingsIds(String userId, int limit) throws Exception {
+        return this.accountApi.getFollowingsIds(userId, limit);
+    }
+
+    @Override
+    public List<Account> getFollowings(String userId, int limit) throws Exception {
+        GabAccountListResponse response = this.accountApi.getFollowings(userId, limit);
+        return response.getAccounts().stream()
+                .map(account -> new Account(account))
+                .collect(Collectors.toList());
     }
 
     @Override
