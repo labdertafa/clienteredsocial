@@ -5,6 +5,7 @@ import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
+import com.laboratorio.clienteredsocial.model.Session;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.gabapiinterface.GabAccountApi;
@@ -31,7 +32,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.4
  * @created 13/10/2024
- * @updated 23/10/2024
+ * @updated 24/10/2024
  */
 public class ClienteRedSocialGab implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialGab.class);
@@ -43,6 +44,14 @@ public class ClienteRedSocialGab implements ClienteRedSocial {
         this.accessToken = accessToken;
         this.accountApi = new GabAccountApiImpl(this.accessToken);
         this.statusApi = new GabStatusApiImpl(this.accessToken);
+    }
+    
+    /* ***********************************
+       Operaciones sobre la entidad Sesion
+       *********************************** */
+    @Override
+    public Session refreshSession(String email, String refreshToken) throws Exception {
+        return null;
     }
 
     /* ************************************

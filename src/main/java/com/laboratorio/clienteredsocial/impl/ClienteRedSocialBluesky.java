@@ -2,13 +2,16 @@ package com.laboratorio.clienteredsocial.impl;
 
 import com.laboratorio.blueskyapiinterface.BlueskyAccountApi;
 import com.laboratorio.blueskyapiinterface.BlueskyNotificationApi;
+import com.laboratorio.blueskyapiinterface.BlueskySessionApi;
 import com.laboratorio.blueskyapiinterface.BlueskyStatusApi;
 import com.laboratorio.blueskyapiinterface.impl.BlueskyAccountApiImpl;
 import com.laboratorio.blueskyapiinterface.impl.BlueskyNotificationApiImpl;
+import com.laboratorio.blueskyapiinterface.impl.BlueskySessionApiImpl;
 import com.laboratorio.blueskyapiinterface.impl.BlueskyStatusApiImpl;
 import com.laboratorio.blueskyapiinterface.model.BlueskyAccount;
 import com.laboratorio.blueskyapiinterface.model.BlueskyNotificationType;
 import com.laboratorio.blueskyapiinterface.model.BlueskyRelationship;
+import com.laboratorio.blueskyapiinterface.model.BlueskySession;
 import com.laboratorio.blueskyapiinterface.model.BlueskyStatus;
 import com.laboratorio.blueskyapiinterface.model.response.BlueskyFollowListResponse;
 import com.laboratorio.blueskyapiinterface.model.response.BlueskyNotificationListResponse;
@@ -20,6 +23,7 @@ import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
+import com.laboratorio.clienteredsocial.model.Session;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import java.util.List;
@@ -28,9 +32,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.4
+ * @version 1.5
  * @created 15/10/2024
- * @updated 23/10/2024
+ * @updated 24/10/2024
  */
 public class ClienteRedSocialBluesky implements ClienteRedSocial {
     private final String accountId;
@@ -45,6 +49,16 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
         this.statusApi = new BlueskyStatusApiImpl(this.accessToken);
     }
 
+    /* ***********************************
+       Operaciones sobre la entidad Sesion
+       *********************************** */
+    @Override
+    public Session refreshSession(String email, String refreshToken) throws Exception {
+        BlueskySessionApi sessionApi = new BlueskySessionApiImpl(this.accessToken, refreshToken);
+        BlueskySession session = sessionApi.refreshSession();
+        return new Session(session);
+    }
+    
     /* ************************************
        Operaciones sobre la entidad Account
        ************************************ */

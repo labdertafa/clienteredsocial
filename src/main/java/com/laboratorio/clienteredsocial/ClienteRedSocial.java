@@ -2,6 +2,7 @@ package com.laboratorio.clienteredsocial;
 
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
+import com.laboratorio.clienteredsocial.model.Session;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import java.util.List;
@@ -9,11 +10,15 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.4
+ * @version 1.5
  * @created 12/10/2024
- * @updated 22/10/2024
+ * @updated 24/10/2024
  */
 public interface ClienteRedSocial {
+    // Operaciones sobre la sesión
+    // Devuelve los datos de la nueva sesión en caso de que se hayan refrescado o nulo en otro caso
+    Session refreshSession(String email, String refreshToken) throws Exception;
+    
     // Operaciones sobre la entidad Account
     Account getAccountById(String userId) throws Exception;
     

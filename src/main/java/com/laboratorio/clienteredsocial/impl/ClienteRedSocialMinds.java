@@ -5,15 +5,19 @@ import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
+import com.laboratorio.clienteredsocial.model.Session;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.mindsapiinterface.MindsAccountApi;
 import com.laboratorio.mindsapiinterface.MindsNotificationApi;
+import com.laboratorio.mindsapiinterface.MindsSessionApi;
 import com.laboratorio.mindsapiinterface.MindsStatusApi;
 import com.laboratorio.mindsapiinterface.impl.MindsAccountApiImpl;
 import com.laboratorio.mindsapiinterface.impl.MindsNotificationApiImpl;
+import com.laboratorio.mindsapiinterface.impl.MindsSessionApiImpl;
 import com.laboratorio.mindsapiinterface.impl.MindsStatusApiImpl;
 import com.laboratorio.mindsapiinterface.model.MindsAccount;
+import com.laboratorio.mindsapiinterface.model.MindsSession;
 import com.laboratorio.mindsapiinterface.model.MindsStatus;
 import com.laboratorio.mindsapiinterface.model.response.MindsAccountListResponse;
 import com.laboratorio.mindsapiinterface.model.response.MindsNotificationsResponse;
@@ -26,11 +30,19 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.3
+ * @version 1.4
  * @created 12/10/2024
- * @updated 21/10/2024
+ * @updated 24/10/2024
  */
 public class ClienteRedSocialMinds implements ClienteRedSocial {
+    private final String username;
+    private final String password;
+
+    public ClienteRedSocialMinds(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    
     private String getUserIdFromURN(String urn) throws Exception {
         String[] partes = urn.split(":");
         if (partes.length != 3) {
@@ -42,6 +54,16 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
     
     private String getURNFromUserId(String userId) {
         return "urn:user:" + userId;
+    }
+    
+    /* ***********************************
+       Operaciones sobre la entidad Sesion
+       *********************************** */
+    @Override
+    public Session refreshSession(String email, String refreshToken) throws Exception {
+        MindsSessionApi sessionApi = new MindsSessionApiImpl();
+        MindsSession session = sessionApi.authenticateUser(this.username, this.password);
+        return new Session(session);
     }
 
     /* ************************************

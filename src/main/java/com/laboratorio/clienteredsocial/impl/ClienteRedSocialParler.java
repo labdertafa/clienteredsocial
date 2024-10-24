@@ -5,17 +5,21 @@ import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
+import com.laboratorio.clienteredsocial.model.Session;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.parlerapiinterface.ParlerAccountApi;
 import com.laboratorio.parlerapiinterface.ParlerNotificationApi;
+import com.laboratorio.parlerapiinterface.ParlerSessionApi;
 import com.laboratorio.parlerapiinterface.ParlerStatusApi;
 import com.laboratorio.parlerapiinterface.impl.ParlerAccountApiImpl;
 import com.laboratorio.parlerapiinterface.impl.ParlerNotificationApiImpl;
+import com.laboratorio.parlerapiinterface.impl.ParlerSessionApiImpl;
 import com.laboratorio.parlerapiinterface.impl.ParlerStatusApiImpl;
 import com.laboratorio.parlerapiinterface.model.ParlerAccount;
 import com.laboratorio.parlerapiinterface.model.ParlerAccountList;
 import com.laboratorio.parlerapiinterface.model.ParlerNotificationList;
+import com.laboratorio.parlerapiinterface.model.ParlerSession;
 import com.laboratorio.parlerapiinterface.model.ParlerStatus;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,19 +27,31 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.4
+ * @version 1.5
  * @created 12/10/2024
- * @updated 23/10/2024
+ * @updated 24/10/2024
  */
 public class ClienteRedSocialParler implements ClienteRedSocial {
     private final String accessToken;
+    private final String password;
     private final ParlerAccountApi accountApi;
     private final ParlerStatusApi statusApi;
 
-    public ClienteRedSocialParler(String accessToken) {
+    public ClienteRedSocialParler(String accessToken, String password) {
         this.accessToken = accessToken;
+        this.password = password;
         this.accountApi = new ParlerAccountApiImpl(this.accessToken);
         this.statusApi = new ParlerStatusApiImpl(this.accessToken);
+    }
+    
+    /* ***********************************
+       Operaciones sobre la entidad Sesion
+       *********************************** */
+    @Override
+    public Session refreshSession(String email, String refreshToken) throws Exception {
+        ParlerSessionApi sessionApi  = new ParlerSessionApiImpl(email, this.password);
+        ParlerSession session = session = sessionApi.authenticateUser();
+        return new Session(session);
     }
 
     /* ************************************

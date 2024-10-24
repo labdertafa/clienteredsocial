@@ -12,14 +12,14 @@ import com.laboratorio.clienteredsocial.impl.ClienteRedSocialTelegram;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialThreads;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialTruthsocial;
 import com.laboratorio.clienteredsocial.model.NombreRedSocial;
-import static com.laboratorio.clienteredsocial.model.NombreRedSocial.MINDS;
+import static com.laboratorio.clienteredsocial.model.NombreRedSocial.*;
 
 /**
  *
  * @author Rafael
  * @version 1.1
  * @created 12/10/2024
- * @updated 17/10/2024
+ * @updated 24/10/2024
  */
 public class ClienteRedSocialManager {
     private ClienteRedSocialManager() {
@@ -55,13 +55,13 @@ public class ClienteRedSocialManager {
                 return new ClienteRedSocialGab(accessToken);
             }
             case MINDS -> {
-                return new ClienteRedSocialMinds();
+                return new ClienteRedSocialMinds(username, password);
             }
             case PARLER -> {
-                return new ClienteRedSocialParler(accessToken);
+                return new ClienteRedSocialParler(accessToken, password);
             }
             default -> {
-                return null;
+                throw new ClienteRedSocialException(ClienteRedSocialManager.class.getName(), "Error, red social no implementada: " + redSocial.name());
             }
         }
     }

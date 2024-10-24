@@ -5,6 +5,7 @@ import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
+import com.laboratorio.clienteredsocial.model.Session;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.getrapiinterface.GettrAccountApi;
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
  * @author Rafael
  * @version 1.4
  * @created 13/10/2024
- * @updated 22/10/2024
+ * @updated 24/10/2024
  */
 public class ClienteRedSocialGettr implements ClienteRedSocial {
     private final String accountId;
@@ -42,6 +43,14 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
         this.accessToken = accessToken;
         this.accountApi = new GettrAccountApiImpl(this.accountId, this.accessToken);
         this.statusApi = new GettrStatusApiImpl(this.accountId, this.accessToken);
+    }
+    
+    /* ***********************************
+       Operaciones sobre la entidad Sesion
+       *********************************** */
+    @Override
+    public Session refreshSession(String email, String refreshToken) throws Exception {
+        return null;
     }
 
     /* ************************************

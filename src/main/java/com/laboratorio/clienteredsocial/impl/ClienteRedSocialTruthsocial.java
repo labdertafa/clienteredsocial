@@ -1,10 +1,12 @@
 package com.laboratorio.clienteredsocial.impl;
 
 import com.laboratorio.clienteredsocial.ClienteRedSocial;
+import com.laboratorio.clienteredsocial.ClienteRedSocialException;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
+import com.laboratorio.clienteredsocial.model.Session;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.truthsocialapiinterface.TruthsocialAccountApi;
@@ -24,9 +26,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.4
+ * @version 1.5
  * @created 13/10/2024
- * @updated 23/10/2024
+ * @updated 24/10/2024
  */
 public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     private final String accessToken;
@@ -37,6 +39,14 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
         this.accessToken = accessToken;
         this.accountApi = new TruthsocialAccountApiImpl(this.accessToken);
         this.statusApi = new TruthsocialStatusApiImpl(this.accessToken);
+    }
+    
+    /* ***********************************
+       Operaciones sobre la entidad Sesion
+       *********************************** */
+    @Override
+    public Session refreshSession(String email, String refreshToken) throws Exception {
+        return null;
     }
 
     /* ************************************
@@ -57,12 +67,12 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException(ClienteRedSocialTruthsocial.class.getName(), "Error, función no implementada para la red social Truthsocial");
     }
     
     @Override
     public List<Account> getFollowers(String userId, int limit) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException(ClienteRedSocialTruthsocial.class.getName(), "Error, función no implementada para la red social Truthsocial");
     }
     
     @Override
