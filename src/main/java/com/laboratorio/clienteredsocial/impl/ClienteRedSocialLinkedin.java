@@ -33,7 +33,7 @@ public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialLinkedin.class.getName(), "Error, función no implementada para la red social LinkedIn");
+        return null;
     }
     
     @Override

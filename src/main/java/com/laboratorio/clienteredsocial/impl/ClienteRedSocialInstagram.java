@@ -43,7 +43,7 @@ public class ClienteRedSocialInstagram implements ClienteRedSocial {
     
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialInstagram.class.getName(), "Error, función no implementada para la red social Instagram");
+        return null;
     }
 
     @Override

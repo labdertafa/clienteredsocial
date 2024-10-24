@@ -31,7 +31,7 @@ public class ClienteRedSocialTelegram implements ClienteRedSocial {
     
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        return null;
     }
 
     @Override
