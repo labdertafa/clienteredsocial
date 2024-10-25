@@ -1,7 +1,7 @@
 package com.laboratorio.clienteredsocial.impl;
 
 import com.laboratorio.clienteredsocial.ClienteRedSocial;
-import com.laboratorio.clienteredsocial.ClienteRedSocialException;
+import com.laboratorio.clienteredsocial.exception.ClienteRedSocialException;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * @author Rafael
  * @version 1.5
  * @created 13/10/2024
- * @updated 24/10/2024
+ * @updated 25/10/2024
  */
 public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     private final String accessToken;

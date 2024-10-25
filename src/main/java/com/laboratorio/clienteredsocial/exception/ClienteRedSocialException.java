@@ -1,4 +1,4 @@
-package com.laboratorio.clienteredsocial;
+package com.laboratorio.clienteredsocial.exception;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.0
  * @created 27/07/2024
- * @updated 24/10/2024
+ * @updated 25/10/2024
  */
 public class ClienteRedSocialException extends RuntimeException {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialException.class);

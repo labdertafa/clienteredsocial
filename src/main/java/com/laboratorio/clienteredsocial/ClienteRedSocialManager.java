@@ -1,5 +1,6 @@
 package com.laboratorio.clienteredsocial;
 
+import com.laboratorio.clienteredsocial.exception.ClienteRedSocialException;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialBluesky;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialGab;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialGettr;
@@ -19,7 +20,7 @@ import static com.laboratorio.clienteredsocial.model.NombreRedSocial.*;
  * @author Rafael
  * @version 1.1
  * @created 12/10/2024
- * @updated 24/10/2024
+ * @updated 25/10/2024
  */
 public class ClienteRedSocialManager {
     private ClienteRedSocialManager() {

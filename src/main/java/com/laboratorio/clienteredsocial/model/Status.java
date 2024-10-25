@@ -97,11 +97,11 @@ public class Status {
         this.updatedAt = ZonedDateTime.parse(status.getUpdatedAt(), DateTimeFormatter.ISO_DATE_TIME);
     }
     
-    public Status(TelegramStatus status) {
+    public Status(TelegramStatus status, String chatId) {
         this.id = Integer.toString(status.getMessage_id());
         this.body = status.getText();
         this.language = null;
-        this.ownerId = Long.toString(status.getFrom().getId());
+        this.ownerId = chatId;
         this.createdAt = ZonedDateTime.ofInstant(Instant.ofEpochMilli(status.getDate()), ZoneId.systemDefault());
         this.updatedAt = ZonedDateTime.ofInstant(Instant.ofEpochMilli(status.getDate()), ZoneId.systemDefault());
     }

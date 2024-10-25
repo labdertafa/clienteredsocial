@@ -1,7 +1,7 @@
 package com.laboratorio.clienteredsocial.impl;
 
 import com.laboratorio.clienteredsocial.ClienteRedSocial;
-import com.laboratorio.clienteredsocial.ClienteRedSocialException;
+import com.laboratorio.clienteredsocial.exception.ClienteRedSocialException;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
@@ -18,7 +18,7 @@ import java.util.List;
  * @author Rafael
  * @version 1.1
  * @created 17/10/2024
- * @updated 24/10/2024
+ * @updated 25/10/2024
  */
 public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     private final String accessToken;

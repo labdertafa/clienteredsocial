@@ -3,7 +3,7 @@ package com.laboratorio.clienteredsocial.impl;
 import com.github.instagram4j.instagram4j.IGClient;
 import com.github.instagram4j.instagram4j.exceptions.IGLoginException;
 import com.laboratorio.clienteredsocial.ClienteRedSocial;
-import com.laboratorio.clienteredsocial.ClienteRedSocialException;
+import com.laboratorio.clienteredsocial.exception.ClienteRedSocialException;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.1
  * @created 17/10/2024
- * @updated 24/10/2024
+ * @updated 25/10/2024
  */
 public class ClienteRedSocialInstagram implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialInstagram.class);
