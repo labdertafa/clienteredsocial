@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
  * @author Rafael
  * @version 1.5
  * @created 15/10/2024
- * @updated 24/10/2024
+ * @updated 29/10/2024
  */
 public class ClienteRedSocialBluesky implements ClienteRedSocial {
     private final String accountId;
@@ -110,7 +110,12 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
 
     @Override
     public boolean unfollowAccount(String userId) throws Exception {
-        return this.accountApi.unfollowAccount(this.accountId, userId);
+        BlueskyRelationshipsResponse response = this.accountApi.checkrelationships(this.accountId, List.of(userId));
+        String uri = response.getRelationships().get(0).getFollowing();
+        if (uri == null) {
+            return false;
+        }
+        return this.accountApi.unfollowAccount(this.accountId, uri);
     }
 
     /* ***********************************
