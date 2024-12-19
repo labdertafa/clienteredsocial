@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.laboratorio</groupId>
     <artifactId>clienteredsocial</artifactId>
-    <version>1.0.20</version>
+    <version>1.0.21</version>
     <packaging>jar</packaging>
     <name>Cliente-Red-Social</name>
     <description>Cliente de red social que hace transparente la comunicación con varias redes sociales alternativas</description>
@@ -99,6 +99,11 @@
             <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/labdertafa/parlerapiinterface/</url>
         </repository>
+        <repository>
+            <id>github_15</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/labdertafa/twitterapiinterface/</url>
+        </repository>
     </repositories>
     
     <dependencies>
@@ -172,6 +177,12 @@
             <groupId>com.laboratorio</groupId>
             <artifactId>parlerapiinterface</artifactId>
             <version>1.1.4</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.laboratorio</groupId>
+            <artifactId>twitterapiinterface</artifactId>
+            <version>1.0.0</version>
         </dependency>
         
         <dependency>

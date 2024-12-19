@@ -9,6 +9,7 @@ import com.laboratorio.parlerapiinterface.model.ParlerStatus;
 import com.laboratorio.telegramapiinterface.model.TelegramStatus;
 import com.laboratorio.threadsapiinterface.model.ThreadsStatus;
 import com.laboratorio.truthsocialapiinterface.model.TruthsocialStatus;
+import com.laboratorio.twitterapiinterface.model.TwitterStatus;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -22,7 +23,7 @@ import lombok.Setter;
  * @author Rafael
  * @version 1.2
  * @created 12/10/2024
- * @updated 18/10/2024
+ * @updated 19/12/2024
  */
 
 @Getter @Setter @AllArgsConstructor
@@ -115,6 +116,15 @@ public class Status {
         ZonedDateTime creationDate = ZonedDateTime.parse(status.getTimestamp(), formatter);
         this.createdAt = creationDate;
         this.updatedAt = creationDate;
+    }
+    
+    public Status(TwitterStatus status) {
+        this.id = status.getData().getId();
+        this.body = status.getData().getText();
+        this.language = null;
+        this.ownerId = null;
+        this.createdAt = ZonedDateTime.now();
+        this.updatedAt = ZonedDateTime.now();
     }
     
     @Override

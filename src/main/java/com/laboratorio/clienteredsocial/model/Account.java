@@ -7,6 +7,7 @@ import com.laboratorio.mastodonapiinterface.model.MastodonAccount;
 import com.laboratorio.mindsapiinterface.model.MindsAccount;
 import com.laboratorio.parlerapiinterface.model.ParlerAccount;
 import com.laboratorio.truthsocialapiinterface.model.TruthsocialAccount;
+import com.laboratorio.twitterapiinterface.model.TwitterAccount;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -21,7 +22,7 @@ import lombok.Setter;
  * @author Rafael
  * @version 1.1
  * @created 12/10/2024
- * @updated 23/10/2024
+ * @updated 19/12/2024
  */
 
 @Getter @Setter @AllArgsConstructor
@@ -110,6 +111,17 @@ public class Account {
         this.followersCount = account.getFollowers();
         this.followingsCount = account.getFollowing();
         this.postCount = account.getPostCount();
+    }
+    
+    public Account(TwitterAccount account) {
+        this.id = account.getData().getId();
+        this.createdAt = null;
+        this.username = account.getData().getUsername();
+        this.name = account.getData().getName();
+        this.language = null;
+        this.followersCount = 0;
+        this.followingsCount = 0;
+        this.postCount = 0;
     }
     
     public boolean isSeguidorPotencial() {

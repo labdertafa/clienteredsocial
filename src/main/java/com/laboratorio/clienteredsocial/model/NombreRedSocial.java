@@ -5,7 +5,7 @@ package com.laboratorio.clienteredsocial.model;
  * @author Rafael
  * @version 1.0
  * @created 26/07/2024
- * @updated 03/10/2024
+ * @updated 19/12/2024
  */
 public enum NombreRedSocial {
     MASTODON(1),
@@ -19,7 +19,8 @@ public enum NombreRedSocial {
     COUNTER(9),
     GAB(10),
     MINDS(11),
-    PARLER(12);
+    PARLER(12),
+    TWITTER(13);
     
     private final int value;
     
@@ -37,6 +38,6 @@ public enum NombreRedSocial {
                 return redSocial;
             }
         }
-        throw new IllegalArgumentException("No enum constant with value " + value);
+        throw new IllegalArgumentException("NombreRedSocial: No enum constant with value " + value);
     }
 }
