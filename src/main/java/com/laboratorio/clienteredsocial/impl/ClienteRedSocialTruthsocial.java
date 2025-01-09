@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.5
+ * @version 1.6
  * @created 13/10/2024
- * @updated 25/10/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     private final String accessToken;
@@ -55,6 +55,12 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         TruthsocialAccount account = this.accountApi.getAccountById(userId);
+        return new Account(account);
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
+        TruthsocialAccount account = this.accountApi.getAccountByUsername(username);
         return new Account(account);
     }
 

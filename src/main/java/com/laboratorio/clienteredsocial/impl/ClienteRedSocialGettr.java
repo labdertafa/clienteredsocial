@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.4
+ * @version 1.5
  * @created 13/10/2024
- * @updated 24/10/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialGettr implements ClienteRedSocial {
     private final String accountId;
@@ -59,6 +59,12 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         GettrAccount account = this.accountApi.getAccountById(userId);
+        return new Account(account);
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
+        GettrAccount account = this.accountApi.getAccountByUsername(username);
         return new Account(account);
     }
 

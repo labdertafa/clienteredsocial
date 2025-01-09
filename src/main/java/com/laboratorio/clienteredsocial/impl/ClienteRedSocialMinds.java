@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.4
+ * @version 1.5
  * @created 12/10/2024
- * @updated 24/10/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialMinds implements ClienteRedSocial {
     private final String username;
@@ -75,6 +75,13 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
         String userURN = this.getURNFromUserId(userId);
         MindsAccount account = accountApi.getAccountsById(List.of(userURN)).get(0);
         
+        return new Account(account);
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
+        MindsAccountApi accountApi = new MindsAccountApiImpl();
+        MindsAccount account = accountApi.getAccountByUsername(username);
         return new Account(account);
     }
 

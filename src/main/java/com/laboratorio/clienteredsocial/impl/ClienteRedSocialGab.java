@@ -20,8 +20,6 @@ import com.laboratorio.gabapiinterface.model.GabStatus;
 import com.laboratorio.gabapiinterface.model.response.GabAccountListResponse;
 import com.laboratorio.gabapiinterface.model.response.GabNotificationListResponse;
 import com.laboratorio.mastodonapiinterface.model.MastodonNotificationType;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
@@ -30,9 +28,9 @@ import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Rafael
- * @version 1.4
+ * @version 1.5
  * @created 13/10/2024
- * @updated 24/10/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialGab implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialGab.class);
@@ -60,8 +58,13 @@ public class ClienteRedSocialGab implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         GabAccount account = this.accountApi.getAccountById(userId);
-        
-        return new Account(account.getId(), ZonedDateTime.parse(account.getCreated_at(), DateTimeFormatter.ISO_DATE_TIME), account.getUsername(), account.getDisplay_name(), null, account.getFollowers_count(), account.getFollowing_count(), account.getStatuses_count());
+        return new Account(account);
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
+        GabAccount account = this.accountApi.getAccountByUsername(username);
+        return new Account(account);
     }
 
     @Override

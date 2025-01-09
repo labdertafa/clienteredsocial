@@ -19,9 +19,9 @@ import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Rafael
- * @version 1.1
+ * @version 1.2
  * @created 17/10/2024
- * @updated 25/10/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialThreads implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialThreads.class);
@@ -42,6 +42,11 @@ public class ClienteRedSocialThreads implements ClienteRedSocial {
 
     @Override
     public Account getAccountById(String userId) throws Exception {
+        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
         throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
     }
 

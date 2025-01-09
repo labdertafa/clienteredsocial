@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.4
+ * @version 1.5
  * @created 13/10/2024
- * @updated 24/10/2024
+ * @updated 09/01/2024
  */
 public class ClienteRedSocialMastodon implements ClienteRedSocial {
     private final String urlBase;
@@ -57,6 +57,12 @@ public class ClienteRedSocialMastodon implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         MastodonAccount account = this.accountApi.getAccountById(userId);
+        return new Account(account);
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
+        MastodonAccount account = this.accountApi.getAccountByUsername(username);
         return new Account(account);
     }
 

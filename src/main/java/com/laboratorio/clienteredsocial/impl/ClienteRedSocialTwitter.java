@@ -20,9 +20,9 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 19/12/2024
- * @updated 19/12/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialTwitter implements ClienteRedSocial {
     private final String accessToken;
@@ -51,6 +51,12 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         TwitterAccount account = this.accountApi.getAccountById(userId);
+        return new Account(account);
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
+        TwitterAccount account = this.accountApi.getAccountByUsername(username);
         return new Account(account);
     }
 

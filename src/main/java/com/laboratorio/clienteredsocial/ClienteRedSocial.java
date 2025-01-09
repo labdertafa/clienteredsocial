@@ -10,9 +10,9 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.5
+ * @version 1.6
  * @created 12/10/2024
- * @updated 24/10/2024
+ * @updated 09/01/2025
  */
 public interface ClienteRedSocial {
     // Operaciones sobre la sesión
@@ -21,6 +21,7 @@ public interface ClienteRedSocial {
     
     // Operaciones sobre la entidad Account
     Account getAccountById(String userId) throws Exception;
+    Account getAccountByUsername(String username) throws Exception;
     
     Relationship checkrelationship(String userId) throws Exception;
     

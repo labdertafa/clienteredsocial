@@ -16,9 +16,9 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.1
+ * @version 1.2
  * @created 17/10/2024
- * @updated 25/10/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     private final String accessToken;
@@ -38,6 +38,11 @@ public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     
     @Override
     public Account getAccountById(String userId) throws Exception {
+        throw new ClienteRedSocialException(ClienteRedSocialLinkedin.class.getName(), "Error, función no implementada para la red social LinkedIn");
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
         throw new ClienteRedSocialException(ClienteRedSocialLinkedin.class.getName(), "Error, función no implementada para la red social LinkedIn");
     }
 

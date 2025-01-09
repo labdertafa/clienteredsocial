@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.5
+ * @version 1.6
  * @created 12/10/2024
- * @updated 24/10/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialParler implements ClienteRedSocial {
     private final String accessToken;
@@ -60,6 +60,12 @@ public class ClienteRedSocialParler implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         ParlerAccount account = this.accountApi.getAccountsById(List.of(userId)).get(0);
+        return new Account(account);
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
+        ParlerAccount account = this.accountApi.getAccountByUsername(username);
         return new Account(account);
     }
     

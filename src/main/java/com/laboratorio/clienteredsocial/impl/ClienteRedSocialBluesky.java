@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.5
+ * @version 1.6
  * @created 15/10/2024
- * @updated 29/10/2024
+ * @updated 09/01/2025
  */
 public class ClienteRedSocialBluesky implements ClienteRedSocial {
     private final String accountId;
@@ -65,7 +65,12 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
     @Override
     public Account getAccountById(String userId) throws Exception {
         BlueskyAccount account = this.accountApi.getAccountById(userId);
-        
+        return new Account(account);
+    }
+    
+    @Override
+    public Account getAccountByUsername(String username) throws Exception {
+        BlueskyAccount account = this.accountApi.getAccountByUsername(username);
         return new Account(account);
     }
 
