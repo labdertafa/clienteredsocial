@@ -15,7 +15,7 @@ import lombok.Setter;
  * @author Rafael
  * @version 1.0
  * @created 24/10/2024
- * @updated 19/12/2024
+ * @updated 16/01/2025
  */
 
 @Getter @Setter @AllArgsConstructor
@@ -26,8 +26,11 @@ public class Session {
     private ZonedDateTime ultimoRefresco;
     
     public Session(BlueskySession session) {
+        // Se calcula la fecha de expiración
+        ZonedDateTime fechaExpiracionTemp = ZonedDateTime.now().plusMinutes(115L);
+        
         this.accessToken = session.getAccessJwt();
-        this.validoHasta = null;
+        this.validoHasta = fechaExpiracionTemp;
         this.refreshToken = session.getRefreshJwt();
         this.ultimoRefresco = ZonedDateTime.now();
     }
@@ -63,7 +66,8 @@ public class Session {
     
     public Session(TwitterSession session) {
         // Se calcula la fecha de expiración
-        ZonedDateTime fechaExpiracion = ZonedDateTime.now().plusSeconds(session.getExpires_in());
+        ZonedDateTime fechaExpiracionTemp = ZonedDateTime.now().plusSeconds(session.getExpires_in());
+        ZonedDateTime fechaExpiracion = fechaExpiracionTemp.minusMinutes(5L);
         
         this.accessToken = session.getAccess_token();
         this.validoHasta = fechaExpiracion;
