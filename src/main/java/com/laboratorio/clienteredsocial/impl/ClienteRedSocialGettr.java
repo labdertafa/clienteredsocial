@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.5
+ * @version 1.6
  * @created 13/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialGettr implements ClienteRedSocial {
     private final String accountId;
@@ -122,15 +122,30 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
                 .map(s -> new Status(s.get_id(), s.getTxt(), s.getTxt_lang(), s.getUid(), ZonedDateTime.ofInstant(Instant.ofEpochMilli(s.getCdate()), ZoneId.systemDefault()), ZonedDateTime.ofInstant(Instant.ofEpochMilli(s.getUpdate()), ZoneId.systemDefault())))
                 .collect(Collectors.toList());
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text) throws Exception {
         return new Status(this.statusApi.postStatus(text));
     }
+    
+    @Override
+    public boolean canPostImageStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
         return new Status(this.statusApi.postStatus(text, filePath));
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return true;
     }
 
     @Override

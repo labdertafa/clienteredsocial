@@ -10,9 +10,9 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.6
+ * @version 1.7
  * @created 12/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public interface ClienteRedSocial {
     // Operaciones sobre la sesión
@@ -38,10 +38,13 @@ public interface ClienteRedSocial {
     // Operaciones sobre la entidad Status
     List<Status> getGlobalTimeline(int quantity) throws Exception;
     
+    boolean canPostTextStatus();
     Status postStatus(String text) throws Exception;
     
+    boolean canPostImageStatus();
     Status postStatus(String text, String filePath) throws Exception;
     
+    boolean canDeleteStatus();
     boolean deleteStatus(String statusId) throws Exception;
     
     // Operaciones sobre la entidad Notificacion

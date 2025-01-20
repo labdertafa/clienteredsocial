@@ -16,9 +16,9 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.2
+ * @version 1.3
  * @created 17/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     private final String accessToken;
@@ -85,17 +85,32 @@ public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
         throw new ClienteRedSocialException(ClienteRedSocialLinkedin.class.getName(), "Error, función no implementada para la red social LinkedIn");
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text) throws Exception {
         LinkedInPostMessageResponse response = this.statusApi.postStatus(text);
         return new Status(response.getId(), text, null, this.userId, ZonedDateTime.now(), ZonedDateTime.now());
     }
+    
+    @Override
+    public boolean canPostImageStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
         LinkedInPostMessageResponse response = this.statusApi.postStatus(text, filePath);
         return new Status(response.getId(), text, null, this.userId, ZonedDateTime.now(), ZonedDateTime.now());
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return true;
     }
 
     @Override

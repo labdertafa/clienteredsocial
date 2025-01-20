@@ -14,9 +14,9 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.2
+ * @version 1.3
  * @created 17/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialTelegram implements ClienteRedSocial {
     private final String accessToken;
@@ -83,15 +83,30 @@ public class ClienteRedSocialTelegram implements ClienteRedSocial {
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
         throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text) throws Exception {
         return new Status(this.statusApi.postStatus(text), chatId);
     }
+    
+    @Override
+    public boolean canPostImageStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
         return new Status(this.statusApi.postStatus(text, filePath), chatId);
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return true;
     }
 
     @Override

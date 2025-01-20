@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.6
+ * @version 1.7
  * @created 13/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     private final String accessToken;
@@ -115,15 +115,30 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
                 .map(status -> new Status(status))
                 .collect(Collectors.toList());
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text) throws Exception {
         return new Status(this.statusApi.postStatus(text));
     }
+    
+    @Override
+    public boolean canPostImageStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
         return new Status(this.statusApi.postStatus(text, filePath));
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return true;
     }
 
     @Override

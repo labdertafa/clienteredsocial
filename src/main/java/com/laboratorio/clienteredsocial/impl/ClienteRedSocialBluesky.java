@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.6
+ * @version 1.7
  * @created 15/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialBluesky implements ClienteRedSocial {
     private final String accountId;
@@ -134,6 +134,11 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
                 .map(status -> new Status(status))
                 .collect(Collectors.toList());
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return true;
+    }
 
     // Nota: en Bluesky, un Post es un Record y se busca usando su uri
     @Override
@@ -141,11 +146,21 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
         return new Status(this.statusApi.postStatus(this.accountId, text));
     }
 
+    @Override
+    public boolean canPostImageStatus() {
+        return true;
+    }
+    
     // Nota: en Bluesky, un Post es un Record y se busca usando su uri
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
         ImageMetadata metadata = PostUtils.extractImageMetadata(filePath);
         return new Status(this.statusApi.postStatus(this.accountId, text, filePath, metadata.getMimeType()));
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return true;
     }
 
     // Nota: en Bluesky, un Post es un Record y se busca usando su uri

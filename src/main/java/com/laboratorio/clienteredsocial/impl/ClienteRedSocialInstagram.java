@@ -19,9 +19,9 @@ import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Rafael
- * @version 1.2
+ * @version 1.3
  * @created 17/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialInstagram implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialInstagram.class);
@@ -95,10 +95,20 @@ public class ClienteRedSocialInstagram implements ClienteRedSocial {
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
         throw new ClienteRedSocialException(ClienteRedSocialInstagram.class.getName(), "Error, función no implementada para la red social Instagram");
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return false;
+    }
 
     @Override
     public Status postStatus(String text) throws Exception {
         throw new ClienteRedSocialException(ClienteRedSocialInstagram.class.getName(), "Error, función no implementada para la red social Instagram");
+    }
+    
+    @Override
+    public boolean canPostImageStatus() {
+        return true;
     }
 
     @Override
@@ -150,6 +160,11 @@ public class ClienteRedSocialInstagram implements ClienteRedSocial {
         }
         
         return new Status("ID", textoAPublicar, null, this.username, ZonedDateTime.now(), ZonedDateTime.now());
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return false;
     }
 
     @Override

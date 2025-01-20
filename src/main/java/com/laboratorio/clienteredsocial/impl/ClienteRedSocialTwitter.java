@@ -20,9 +20,9 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.1
+ * @version 1.2
  * @created 19/12/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialTwitter implements ClienteRedSocial {
     private final String accessToken;
@@ -102,17 +102,31 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text) throws Exception {
         TwitterStatus status = this.statusApi.postStatus(text);
         return new Status(status);
     }
+    
+    @Override
+    public boolean canPostImageStatus() {
+        return false;
+    }
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
-        TwitterStatus status = this.statusApi.postStatus(text);
-        return new Status(status);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return false;
     }
 
     @Override

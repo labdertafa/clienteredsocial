@@ -19,9 +19,9 @@ import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Rafael
- * @version 1.2
+ * @version 1.3
  * @created 17/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialThreads implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialThreads.class);
@@ -89,6 +89,11 @@ public class ClienteRedSocialThreads implements ClienteRedSocial {
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
         throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text) throws Exception {
@@ -100,6 +105,11 @@ public class ClienteRedSocialThreads implements ClienteRedSocial {
         
         return new Status(this.statusApi.postStatus(text));
     }
+    
+    @Override
+    public boolean canPostImageStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
@@ -110,6 +120,11 @@ public class ClienteRedSocialThreads implements ClienteRedSocial {
         }
         
         return new Status(this.statusApi.postStatus(text, filePath));
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return false;
     }
 
     @Override

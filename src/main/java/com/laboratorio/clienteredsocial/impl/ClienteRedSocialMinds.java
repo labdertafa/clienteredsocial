@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.5
+ * @version 1.6
  * @created 12/10/2024
- * @updated 09/01/2025
+ * @updated 20/01/2025
  */
 public class ClienteRedSocialMinds implements ClienteRedSocial {
     private final String username;
@@ -150,11 +150,21 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
                 .map(s -> new Status(s.getGuid(), s.getMessage(), null, s.getOwner_guid(), ZonedDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(s.getTime_created())), ZoneId.systemDefault()), ZonedDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(s.getTime_updated())), ZoneId.systemDefault())))
                 .collect(Collectors.toList());
     }
+    
+    @Override
+    public boolean canPostTextStatus() {
+        return true;
+    }
 
     @Override
     public Status postStatus(String text) throws Exception {
         MindsStatusApi statusApi = new MindsStatusApiImpl();
         return new Status(statusApi.postStatus(text));
+    }
+    
+    @Override
+    public boolean canPostImageStatus() {
+        return true;
     }
 
     @Override
@@ -167,6 +177,11 @@ public class ClienteRedSocialMinds implements ClienteRedSocial {
     public boolean deleteStatus(String statusId) throws Exception {
         MindsStatusApi statusApi = new MindsStatusApiImpl();
         return statusApi.deleteStatus(statusId);
+    }
+    
+    @Override
+    public boolean canDeleteStatus() {
+        return true;
     }
 
     /* *****************************************
