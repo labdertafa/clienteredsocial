@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.3
  * @created 17/10/2024
- * @updated 20/01/2025
+ * @updated 23/02/2025
  */
 public class ClienteRedSocialInstagram implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialInstagram.class);
@@ -39,6 +39,11 @@ public class ClienteRedSocialInstagram implements ClienteRedSocial {
         if (e.getCause() != null) {
             log.error("Causa: " + e.getCause().getMessage());
         }
+    }
+    
+    @Override
+    public Session createSession(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override

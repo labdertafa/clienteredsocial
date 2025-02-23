@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.7
+ * @version 1.8
  * @created 15/10/2024
- * @updated 20/01/2025
+ * @updated 23/02/2025
  */
 public class ClienteRedSocialBluesky implements ClienteRedSocial {
     private final String accountId;
@@ -52,6 +52,13 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
     /* ***********************************
        Operaciones sobre la entidad Sesion
        *********************************** */
+    @Override
+    public Session createSession(String username, String password) {
+        BlueskySessionApi sessionApi = new BlueskySessionApiImpl(this.accessToken, "");
+        BlueskySession session = sessionApi.createSession(username, password);
+        return new Session(session);
+    }
+    
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
         BlueskySessionApi sessionApi = new BlueskySessionApiImpl(this.accessToken, refreshToken);

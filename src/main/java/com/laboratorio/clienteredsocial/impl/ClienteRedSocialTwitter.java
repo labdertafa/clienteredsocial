@@ -22,7 +22,7 @@ import java.util.List;
  * @author Rafael
  * @version 1.2
  * @created 19/12/2024
- * @updated 20/01/2025
+ * @updated 23/02/2025
  */
 public class ClienteRedSocialTwitter implements ClienteRedSocial {
     private final String accessToken;
@@ -38,6 +38,11 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
     /* ***********************************
        Operaciones sobre la entidad Sesion
        *********************************** */
+    @Override
+    public Session createSession(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
         TwitterSessionApi sessionApi = new TwitterSessionApiImpl(this.accessToken, refreshToken);

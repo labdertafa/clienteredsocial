@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * @author Rafael
  * @version 1.7
  * @created 13/10/2024
- * @updated 20/01/2025
+ * @updated 23/02/2025
  */
 public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     private final String accessToken;
@@ -44,6 +44,11 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     /* ***********************************
        Operaciones sobre la entidad Sesion
        *********************************** */
+    @Override
+    public Session createSession(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
         return null;

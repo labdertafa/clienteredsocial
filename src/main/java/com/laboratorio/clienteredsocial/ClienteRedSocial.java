@@ -10,12 +10,13 @@ import java.util.List;
 /**
  *
  * @author Rafael
- * @version 1.7
+ * @version 1.8
  * @created 12/10/2024
- * @updated 20/01/2025
+ * @updated 23/02/2025
  */
 public interface ClienteRedSocial {
     // Operaciones sobre la sesión
+    Session createSession(String username, String password);
     // Devuelve los datos de la nueva sesión en caso de que se hayan refrescado o nulo en otro caso
     Session refreshSession(String email, String refreshToken) throws Exception;
     

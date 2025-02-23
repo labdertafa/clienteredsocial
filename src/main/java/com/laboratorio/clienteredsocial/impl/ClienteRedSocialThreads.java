@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.3
  * @created 17/10/2024
- * @updated 20/01/2025
+ * @updated 23/02/2025
  */
 public class ClienteRedSocialThreads implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialThreads.class);
@@ -31,6 +31,11 @@ public class ClienteRedSocialThreads implements ClienteRedSocial {
     public ClienteRedSocialThreads(String accessToken) {
         this.accessToken = accessToken;
         this.statusApi = new ThreadsStatusApiImpl(this.accessToken);
+    }
+    
+    @Override
+    public Session createSession(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override

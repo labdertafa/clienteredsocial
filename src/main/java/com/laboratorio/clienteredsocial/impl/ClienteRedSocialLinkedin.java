@@ -18,7 +18,7 @@ import java.util.List;
  * @author Rafael
  * @version 1.3
  * @created 17/10/2024
- * @updated 20/01/2025
+ * @updated 23/02/2025
  */
 public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     private final String accessToken;
@@ -29,6 +29,11 @@ public class ClienteRedSocialLinkedin implements ClienteRedSocial {
         this.accessToken = accessToken;
         this.userId = userId;
         this.statusApi = new LinkedInStatusApiImpl(this.accessToken, this.userId);
+    }
+    
+    @Override
+    public Session createSession(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
