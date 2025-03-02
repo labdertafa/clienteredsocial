@@ -19,9 +19,9 @@ import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Rafael
- * @version 1.3
+ * @version 1.4
  * @created 17/10/2024
- * @updated 23/02/2025
+ * @updated 24/02/2025
  */
 public class ClienteRedSocialInstagram implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialInstagram.class);
@@ -43,7 +43,17 @@ public class ClienteRedSocialInstagram implements ClienteRedSocial {
     
     @Override
     public Session createSession(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            IGClient.builder()
+                .username(username)
+                .password(password)
+                .login();
+        } catch (IGLoginException e) {
+            this.registrarError("No se ha logrado establecer la conexión con Instagram para el usuario " + this.username, e);
+            return null;
+        }
+        
+        return new Session(username, ZonedDateTime.now().plusYears(1L), password, ZonedDateTime.now());
     }
     
     @Override
