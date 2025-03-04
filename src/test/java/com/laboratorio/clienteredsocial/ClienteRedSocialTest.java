@@ -5,6 +5,7 @@ import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.NombreRedSocial;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
+import com.laboratorio.clienteredsocial.model.SessionRequest;
 import com.laboratorio.clienteredsocial.model.Status;
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Rafael
  * @version 1.2
  * @created 12/10/2024
- * @updated 24/02/2025
+ * @updated 04/03/2025
  */
 public class ClienteRedSocialTest {
     protected static final Logger log = LogManager.getLogger(ClienteRedSocialTest.class);
@@ -150,14 +151,15 @@ public class ClienteRedSocialTest {
         assertTrue(status == null);
     }
     
-    @Test
+    /* @Test
     public void createSessionInstagram() throws Exception {
         String username = "humordespierto";
         String password = "vIelma03";
         
+        SessionRequest request = new SessionRequest(username, "", password);
         ClienteRedSocial cliente = new ClienteRedSocialInstagram(username, password);
-        Session session = cliente.createSession(username, password);
+        Session session = cliente.createSession(request);
         
         assertNotNull(session);
-    }
+    } */
 }

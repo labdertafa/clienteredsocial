@@ -6,6 +6,7 @@ import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
+import com.laboratorio.clienteredsocial.model.SessionRequest;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.getrapiinterface.GettrAccountApi;
@@ -30,7 +31,7 @@ import java.util.stream.Collectors;
  * @author Rafael
  * @version 1.6
  * @created 13/10/2024
- * @updated 23/02/2025
+ * @updated 04/03/2025
  */
 public class ClienteRedSocialGettr implements ClienteRedSocial {
     private final String accountId;
@@ -49,7 +50,7 @@ public class ClienteRedSocialGettr implements ClienteRedSocial {
        Operaciones sobre la entidad Sesion
        *********************************** */
     @Override
-    public Session createSession(String username, String password) {
+    public Session createSession(SessionRequest request) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

@@ -7,6 +7,7 @@ import com.laboratorio.clienteredsocial.exception.ClienteRedSocialException;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
+import com.laboratorio.clienteredsocial.model.SessionRequest;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import java.io.File;
@@ -21,7 +22,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.4
  * @created 17/10/2024
- * @updated 24/02/2025
+ * @updated 04/03/2025
  */
 public class ClienteRedSocialInstagram implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialInstagram.class);
@@ -42,14 +43,14 @@ public class ClienteRedSocialInstagram implements ClienteRedSocial {
     }
     
     @Override
-    public Session createSession(String username, String password) {
+    public Session createSession(SessionRequest request) {
         try {
             IGClient.builder()
-                .username(username)
-                .password(password)
+                .username(request.getUsername())
+                .password(request.getPassword())
                 .login();
         } catch (IGLoginException e) {
-            this.registrarError("No se ha logrado establecer la conexión con Instagram para el usuario " + this.username, e);
+            this.registrarError("No se ha logrado establecer la conexión con Instagram para el usuario " + request.getUsername(), e);
             return null;
         }
         

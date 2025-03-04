@@ -4,6 +4,7 @@ import com.laboratorio.clienteredsocial.ClienteRedSocial;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
+import com.laboratorio.clienteredsocial.model.SessionRequest;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.twitterapiinterface.TwitterAccountApi;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author Rafael
  * @version 1.2
  * @created 19/12/2024
- * @updated 23/02/2025
+ * @updated 04/03/2025
  */
 public class ClienteRedSocialTwitter implements ClienteRedSocial {
     private final String accessToken;
@@ -39,7 +40,7 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
        Operaciones sobre la entidad Sesion
        *********************************** */
     @Override
-    public Session createSession(String username, String password) {
+    public Session createSession(SessionRequest request) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

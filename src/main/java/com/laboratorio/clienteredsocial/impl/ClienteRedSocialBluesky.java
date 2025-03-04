@@ -24,6 +24,7 @@ import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
+import com.laboratorio.clienteredsocial.model.SessionRequest;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import java.util.List;
@@ -34,7 +35,7 @@ import java.util.stream.Collectors;
  * @author Rafael
  * @version 1.8
  * @created 15/10/2024
- * @updated 23/02/2025
+ * @updated 04/03/2025
  */
 public class ClienteRedSocialBluesky implements ClienteRedSocial {
     private final String accountId;
@@ -53,9 +54,9 @@ public class ClienteRedSocialBluesky implements ClienteRedSocial {
        Operaciones sobre la entidad Sesion
        *********************************** */
     @Override
-    public Session createSession(String username, String password) {
+    public Session createSession(SessionRequest request) {
         BlueskySessionApi sessionApi = new BlueskySessionApiImpl(this.accessToken, "");
-        BlueskySession session = sessionApi.createSession(username, password);
+        BlueskySession session = sessionApi.createSession(request.getUsername(), request.getPassword());
         return new Session(session);
     }
     

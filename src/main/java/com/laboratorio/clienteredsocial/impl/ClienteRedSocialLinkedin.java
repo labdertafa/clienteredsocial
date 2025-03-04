@@ -5,6 +5,7 @@ import com.laboratorio.clienteredsocial.exception.ClienteRedSocialException;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
+import com.laboratorio.clienteredsocial.model.SessionRequest;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.linkedinapiinterface.LinkedInStatusApi;
@@ -18,7 +19,7 @@ import java.util.List;
  * @author Rafael
  * @version 1.3
  * @created 17/10/2024
- * @updated 23/02/2025
+ * @updated 04/03/2025
  */
 public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     private final String accessToken;
@@ -32,7 +33,7 @@ public class ClienteRedSocialLinkedin implements ClienteRedSocial {
     }
     
     @Override
-    public Session createSession(String username, String password) {
+    public Session createSession(SessionRequest request) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

@@ -6,6 +6,7 @@ import com.laboratorio.clienteredsocial.model.Notificacion;
 import com.laboratorio.clienteredsocial.model.NotificationType;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
+import com.laboratorio.clienteredsocial.model.SessionRequest;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
 import com.laboratorio.parlerapiinterface.ParlerAccountApi;
@@ -27,9 +28,9 @@ import java.util.stream.Collectors;
 /**
  *
  * @author Rafael
- * @version 1.7
+ * @version 1.8
  * @created 12/10/2024
- * @updated 23/02/2025
+ * @updated 04/03/2025
  */
 public class ClienteRedSocialParler implements ClienteRedSocial {
     private final String accessToken;
@@ -48,14 +49,16 @@ public class ClienteRedSocialParler implements ClienteRedSocial {
        Operaciones sobre la entidad Sesion
        *********************************** */
     @Override
-    public Session createSession(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Session createSession(SessionRequest request) {
+        ParlerSessionApi sessionApi = new ParlerSessionApiImpl(request.getEmail(), request.getPassword());
+        ParlerSession session = sessionApi.createSession();
+        return new Session(session);
     }
     
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
         ParlerSessionApi sessionApi  = new ParlerSessionApiImpl(email, this.password);
-        ParlerSession session = session = sessionApi.authenticateUser();
+        ParlerSession session = sessionApi.authenticateUser();
         return new Session(session);
     }
 
