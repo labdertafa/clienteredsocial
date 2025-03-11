@@ -125,7 +125,7 @@ public class ClienteRedSocialTest {
     } */
     
 /*    @Test
-    public void postearContenidoInstagrama() throws Exception {
+    public void postearContenidoInstagram() throws Exception {
         String username = "laboratoriorafa";
         String password = "vielma81";
         String texto = "Texto de la publicación de prueba";
@@ -161,5 +161,25 @@ public class ClienteRedSocialTest {
         Session session = cliente.createSession(request);
         
         assertNotNull(session);
+    } */
+    
+    /* @Test
+    public void recuperarTimeLineTruthsocial() throws Exception {
+        String accountId = "114093707828642110";
+        String accessToken = "6qvW7OYC_z9wGHmU6nkxCaa9YNYsydHV20sEMItOos4";
+        String urlBase = "";
+        String username = "humordespierto";
+        String password = "Vielma03";
+        this.verificarPosiblesSeguidores(NombreRedSocial.TRUTHSOCIAL, accountId, accessToken, urlBase, username, password);
+    } */
+    
+    /* @Test
+    public void recuperarTimeLineParler() throws Exception {
+        String accountId = "01jnkj5dyjkk5mecn304y72jxw";
+        String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiYTlkOTZmNmM1MGJmM2ExNTBiOTUzNDkwODg1ZGM1NjNmOTU5MTE1YjgwMjFhZDIwNDNmNTM0MDZiNGU0YTU4NTI4YTZkZmFjMzRjM2ZhM2MiLCJpYXQiOjE3NDE0NTQzODEuNDcyNTIxLCJuYmYiOjE3NDE0NTQzODEuNDcyNTI5LCJleHAiOjE3NDI2NjM5ODEuNDUyMTE3LCJzdWIiOiIyMTYzMjE0MiIsInNjb3BlcyI6WyIqIl0sInVzZXJfaWQiOiIwMWpua2o1ZHlqa2s1bWVjbjMwNHk3Mmp4dyJ9.h78EIHSUPc3MSclLceF3KWHzYrzTjoJ0XNax1RYzQE4__OzXhuNRbQnGQ2HTg60uNMHoPAWk-RHFjSvgA4p4ubgYBLoiZNzGJdbI7oVtAsHgjqbSm1ealfxI_6kXiIbCjBsMqYiPnabJMoR4d5zu7p5ga7CJrh6BTZCXKXxGUutk-iYXlvzWLSGNVVLel08cVmBfZXx1UiSyJO8nGqY7xxBI7VAEzyVWKT_4rbXDipAe3z-ay0qGrl4mH8muI5SeM5_GobEFv6BEBUp4GzGigV9q4TigC_erFyp5WJGhQlhBSZWxkHUeVQtV_gxEYvPhz2HDFceRc4s5HIF0WqxWgofQ9AMbto4AwJP_DfW7ytWr4Q-WbviOfe64XnK4GsyZvdrd6WcMIdsG6gABpwQsA3Gq_U1qfZX9NGuQTJVXEV72jXO0hA52VolbMBEa1LtqjT7P2bQr6rqqtSl9UingsqAGRmQXZD3YB--VZluomn-eMwHYsBg59yb2JGv4RGMQDwH1Te_dDLTifRCmUEhisq1YNBuIDDrwGC0vOqypCnr9DFGC0bt5FQT8jUg1YwVrySBHikAME8-l1f3WGBcyVEYpjtbDipfbM2_yCtjnQHFTN_H-yvUXxhFCACwYG1rHZi-llxRgoArdaeSU436GmDA2evgO8pRSie3F8_azJzk";
+        String urlBase = "";
+        String username = "awakehumor";
+        String password = "fukwlpdbwyunzrvc";
+        this.verificarPosiblesSeguidores(NombreRedSocial.PARLER, accountId, accessToken, urlBase, username, password);
     } */
 }

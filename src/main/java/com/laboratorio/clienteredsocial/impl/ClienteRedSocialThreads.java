@@ -22,16 +22,16 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.3
  * @created 17/10/2024
- * @updated 04/03/2025
+ * @updated 11/03/2025
  */
 public class ClienteRedSocialThreads implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialThreads.class);
     private final String accessToken;
     private final ThreadsStatusApi statusApi;
 
-    public ClienteRedSocialThreads(String accessToken) {
+    public ClienteRedSocialThreads(String accessToken, String userId) {
         this.accessToken = accessToken;
-        this.statusApi = new ThreadsStatusApiImpl(this.accessToken);
+        this.statusApi = new ThreadsStatusApiImpl(this.accessToken, userId);
     }
     
     @Override

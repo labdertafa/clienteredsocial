@@ -21,7 +21,7 @@ import static com.laboratorio.clienteredsocial.model.NombreRedSocial.*;
  * @author Rafael
  * @version 1.1
  * @created 12/10/2024
- * @updated 19/12/2024
+ * @updated 11/03/2025
  */
 public class ClienteRedSocialManager {
     private ClienteRedSocialManager() {
@@ -48,7 +48,7 @@ public class ClienteRedSocialManager {
                 return new ClienteRedSocialTruthsocial(accessToken);
             }
             case THREADS -> {
-                return new ClienteRedSocialThreads(accessToken);
+                return new ClienteRedSocialThreads(accessToken, userId);
             }
             case GETTR -> {
                 return new ClienteRedSocialGettr(userId, accessToken);
