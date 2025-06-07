@@ -9,6 +9,7 @@ import com.laboratorio.parlerapiinterface.model.ParlerStatus;
 import com.laboratorio.telegramapiinterface.model.TelegramStatus;
 import com.laboratorio.threadsapiinterface.model.ThreadsStatus;
 import com.laboratorio.truthsocialapiinterface.model.TruthsocialStatus;
+import com.laboratorio.tumblr.model.TumblrStatusResponse;
 import com.laboratorio.twitterapiinterface.model.TwitterStatus;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -121,6 +122,15 @@ public class Status {
     public Status(TwitterStatus status) {
         this.id = status.getData().getId();
         this.body = status.getData().getText();
+        this.language = null;
+        this.ownerId = null;
+        this.createdAt = ZonedDateTime.now();
+        this.updatedAt = ZonedDateTime.now();
+    }
+    
+    public Status(TumblrStatusResponse status) {
+        this.id = status.getResponse().getId_string();
+        this.body = status.getResponse().getDisplay_text();
         this.language = null;
         this.ownerId = null;
         this.createdAt = ZonedDateTime.now();

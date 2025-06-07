@@ -8,90 +8,91 @@ import com.laboratorio.clienteredsocial.model.Session;
 import com.laboratorio.clienteredsocial.model.SessionRequest;
 import com.laboratorio.clienteredsocial.model.Status;
 import com.laboratorio.clienteredsocial.response.NotificationListResponse;
-import com.laboratorio.linkedinapiinterface.LinkedInStatusApi;
-import com.laboratorio.linkedinapiinterface.impl.LinkedInStatusApiImpl;
-import com.laboratorio.linkedinapiinterface.model.response.LinkedInPostMessageResponse;
-import java.time.ZonedDateTime;
+import com.laboratorio.tumblr.TumblrSessionApi;
+import com.laboratorio.tumblr.TumblrStatusApi;
+import com.laboratorio.tumblr.impl.TumblrSessionApiImpl;
+import com.laboratorio.tumblr.impl.TumblrStatusApiImpl;
+import com.laboratorio.tumblr.model.TumblrSessionResponse;
 import java.util.List;
 
 /**
  *
  * @author Rafael
- * @version 1.3
- * @created 17/10/2024
+ * @version 1.0
+ * @created 07/06/2025
  * @updated 07/06/2025
  */
-public class ClienteRedSocialLinkedin implements ClienteRedSocial {
+public class ClienteRedSocialTumblr implements ClienteRedSocial {
     private final String accessToken;
-    private final String userId;
-    private final LinkedInStatusApi statusApi;
+    private final TumblrStatusApi statusApi;
 
-    public ClienteRedSocialLinkedin(String accessToken, String userId) {
+    public ClienteRedSocialTumblr(String accessToken, String blog) {
         this.accessToken = accessToken;
-        this.userId = userId;
-        this.statusApi = new LinkedInStatusApiImpl(this.accessToken, this.userId);
+        this.statusApi = new TumblrStatusApiImpl(this.accessToken, blog);
     }
     
     @Override
     public Session createSession(SessionRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
-    
+
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
-        return null;
+        TumblrSessionApi sessionApi = new TumblrSessionApiImpl(this.accessToken);
+        TumblrSessionResponse session = sessionApi.refreshSession(refreshToken);
+        return new Session(session);
     }
-    
+
     @Override
     public Account getAccountById(String userId) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
-    
+
     @Override
     public Account getAccountByUsername(String username) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
 
     @Override
     public Relationship checkrelationship(String userId) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
-    
+
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
-    
+
     @Override
     public List<Account> getFollowers(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
-    
+
     @Override
     public List<String> getFollowingsIds(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
 
     @Override
     public List<Account> getFollowings(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
 
     @Override
     public boolean followAccount(String userId) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
 
     @Override
     public boolean unfollowAccount(String userId) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
 
     @Override
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
-    
+
     @Override
     public boolean canPostTextStatus() {
         return true;
@@ -99,10 +100,9 @@ public class ClienteRedSocialLinkedin implements ClienteRedSocial {
 
     @Override
     public Status postStatus(String text) throws Exception {
-        LinkedInPostMessageResponse response = this.statusApi.postStatus(text);
-        return new Status(response.getId(), text, null, this.userId, ZonedDateTime.now(), ZonedDateTime.now());
+        return new Status(this.statusApi.postStatus(text));
     }
-    
+
     @Override
     public boolean canPostImageStatus() {
         return true;
@@ -110,10 +110,9 @@ public class ClienteRedSocialLinkedin implements ClienteRedSocial {
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
-        LinkedInPostMessageResponse response = this.statusApi.postStatus(text, filePath);
-        return new Status(response.getId(), text, null, this.userId, ZonedDateTime.now(), ZonedDateTime.now());
+        return new Status(this.statusApi.postStatus(text, filePath));
     }
-    
+
     @Override
     public boolean canDeleteStatus() {
         return true;
@@ -126,6 +125,6 @@ public class ClienteRedSocialLinkedin implements ClienteRedSocial {
 
     @Override
     public NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception {
-        throw new ClienteRedSocialException("Error, función no implementada para la red social LinkedIn");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Tumblr");
     }
 }

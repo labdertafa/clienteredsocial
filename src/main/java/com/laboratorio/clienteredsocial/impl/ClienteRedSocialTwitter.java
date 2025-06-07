@@ -1,6 +1,7 @@
 package com.laboratorio.clienteredsocial.impl;
 
 import com.laboratorio.clienteredsocial.ClienteRedSocial;
+import com.laboratorio.clienteredsocial.exception.ClienteRedSocialException;
 import com.laboratorio.clienteredsocial.model.Account;
 import com.laboratorio.clienteredsocial.model.Relationship;
 import com.laboratorio.clienteredsocial.model.Session;
@@ -23,7 +24,7 @@ import java.util.List;
  * @author Rafael
  * @version 1.2
  * @created 19/12/2024
- * @updated 04/03/2025
+ * @updated 07/06/2025
  */
 public class ClienteRedSocialTwitter implements ClienteRedSocial {
     private final String accessToken;
@@ -41,7 +42,7 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
        *********************************** */
     @Override
     public Session createSession(SessionRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     @Override
@@ -68,37 +69,37 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
 
     @Override
     public Relationship checkrelationship(String userId) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     @Override
     public List<Account> getFollowers(String userId, int limit) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     @Override
     public List<String> getFollowingsIds(String userId, int limit) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     @Override
     public List<Account> getFollowings(String userId, int limit) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     @Override
     public boolean followAccount(String userId) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     @Override
     public boolean unfollowAccount(String userId) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     /* ***********************************
@@ -106,7 +107,7 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
        *********************************** */
     @Override
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
     
     @Override
@@ -127,7 +128,7 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
 
     @Override
     public Status postStatus(String text, String filePath) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
     
     @Override
@@ -137,7 +138,7 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
 
     @Override
     public boolean deleteStatus(String statusId) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 
     /* *****************************************
@@ -145,6 +146,6 @@ public class ClienteRedSocialTwitter implements ClienteRedSocial {
        ****************************************** */
     @Override
     public NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Twitter");
     }
 }

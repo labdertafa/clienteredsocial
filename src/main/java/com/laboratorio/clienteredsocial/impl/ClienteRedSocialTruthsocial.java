@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
  * @author Rafael
  * @version 1.7
  * @created 13/10/2024
- * @updated 04/03/2025
+ * @updated 07/06/2025
  */
 public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     private final String accessToken;
@@ -47,7 +47,7 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
        *********************************** */
     @Override
     public Session createSession(SessionRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Truthsocial");
     }
     
     @Override
@@ -79,12 +79,12 @@ public class ClienteRedSocialTruthsocial implements ClienteRedSocial {
     
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTruthsocial.class.getName(), "Error, función no implementada para la red social Truthsocial");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Truthsocial");
     }
     
     @Override
     public List<Account> getFollowers(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTruthsocial.class.getName(), "Error, función no implementada para la red social Truthsocial");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Truthsocial");
     }
     
     @Override

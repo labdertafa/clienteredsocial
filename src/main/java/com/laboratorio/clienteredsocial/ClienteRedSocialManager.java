@@ -12,6 +12,7 @@ import com.laboratorio.clienteredsocial.impl.ClienteRedSocialMinds;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialTelegram;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialThreads;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialTruthsocial;
+import com.laboratorio.clienteredsocial.impl.ClienteRedSocialTumblr;
 import com.laboratorio.clienteredsocial.impl.ClienteRedSocialTwitter;
 import com.laboratorio.clienteredsocial.model.NombreRedSocial;
 import static com.laboratorio.clienteredsocial.model.NombreRedSocial.*;
@@ -19,9 +20,9 @@ import static com.laboratorio.clienteredsocial.model.NombreRedSocial.*;
 /**
  *
  * @author Rafael
- * @version 1.1
+ * @version 1.2
  * @created 12/10/2024
- * @updated 11/03/2025
+ * @updated 07/06/2025
  */
 public class ClienteRedSocialManager {
     private ClienteRedSocialManager() {
@@ -39,6 +40,7 @@ public class ClienteRedSocialManager {
                 return new ClienteRedSocialInstagram(username, password);
             }
             case TELEGRAM -> {
+                // El chat en el que se va a postear viaja en el parámetro username
                 return new ClienteRedSocialTelegram(accessToken, username);
             }
             case LINKEDIN -> {
@@ -65,8 +67,12 @@ public class ClienteRedSocialManager {
             case TWITTER -> {
                 return new ClienteRedSocialTwitter(accessToken);
             }
+            case TUMBLR -> {
+                // En el parámetro username se recibe el blog en el cual se debe postear
+                return new ClienteRedSocialTumblr(accessToken, username);
+            }
             default -> {
-                throw new ClienteRedSocialException(ClienteRedSocialManager.class.getName(), "Error, red social no implementada: " + redSocial.name());
+                throw new ClienteRedSocialException("Error, red social no implementada: " + redSocial.name());
             }
         }
     }

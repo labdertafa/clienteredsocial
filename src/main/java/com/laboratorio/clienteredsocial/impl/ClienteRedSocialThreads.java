@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rafael
  * @version 1.3
  * @created 17/10/2024
- * @updated 11/03/2025
+ * @updated 07/06/2025
  */
 public class ClienteRedSocialThreads implements ClienteRedSocial {
     private static final Logger log = LogManager.getLogger(ClienteRedSocialThreads.class);
@@ -48,52 +48,52 @@ public class ClienteRedSocialThreads implements ClienteRedSocial {
 
     @Override
     public Account getAccountById(String userId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
     
     @Override
     public Account getAccountByUsername(String username) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
 
     @Override
     public Relationship checkrelationship(String userId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
     
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
     
     @Override
     public List<Account> getFollowers(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
     
     @Override
     public List<String> getFollowingsIds(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
 
     @Override
     public List<Account> getFollowings(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
 
     @Override
     public boolean followAccount(String userId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
 
     @Override
     public boolean unfollowAccount(String userId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
 
     @Override
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
     
     @Override
@@ -135,11 +135,11 @@ public class ClienteRedSocialThreads implements ClienteRedSocial {
 
     @Override
     public boolean deleteStatus(String statusId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
 
     @Override
     public NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialThreads.class.getName(), "Error, función no implementada para la red social Threads");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Threads");
     }
 }

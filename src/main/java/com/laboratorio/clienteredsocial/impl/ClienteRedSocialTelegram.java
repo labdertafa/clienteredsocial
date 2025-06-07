@@ -17,7 +17,7 @@ import java.util.List;
  * @author Rafael
  * @version 1.3
  * @created 17/10/2024
- * @updated 04/03/2025
+ * @updated 07/06/2025
  */
 public class ClienteRedSocialTelegram implements ClienteRedSocial {
     private final String accessToken;
@@ -42,52 +42,52 @@ public class ClienteRedSocialTelegram implements ClienteRedSocial {
 
     @Override
     public Account getAccountById(String userId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
     
     @Override
     public Account getAccountByUsername(String username) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
 
     @Override
     public Relationship checkrelationship(String userId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
     
     @Override
     public List<String> getFollowersIds(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
     
     @Override
     public List<Account> getFollowers(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
     
     @Override
     public List<String> getFollowingsIds(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
 
     @Override
     public List<Account> getFollowings(String userId, int limit) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
 
     @Override
     public boolean followAccount(String userId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
 
     @Override
     public boolean unfollowAccount(String userId) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
 
     @Override
     public List<Status> getGlobalTimeline(int quantity) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
     
     @Override
@@ -122,6 +122,6 @@ public class ClienteRedSocialTelegram implements ClienteRedSocial {
 
     @Override
     public NotificationListResponse getFollowNotifications(String posicionInicial) throws Exception {
-        throw new ClienteRedSocialException(ClienteRedSocialTelegram.class.getName(), "Error, función no implementada para la red social Telegram");
+        throw new ClienteRedSocialException("Error, función no implementada para la red social Telegram");
     }
 }

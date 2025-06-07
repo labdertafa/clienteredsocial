@@ -4,6 +4,7 @@ import com.laboratorio.blueskyapiinterface.model.BlueskySession;
 import com.laboratorio.mindsapiinterface.model.MindsSession;
 import com.laboratorio.parlerapiinterface.model.ParlerSession;
 import com.laboratorio.threadsapiinterface.model.ThreadsSessionResponse;
+import com.laboratorio.tumblr.model.TumblrSessionResponse;
 import com.laboratorio.twitterapiinterface.model.TwitterSession;
 import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
@@ -13,9 +14,9 @@ import lombok.Setter;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 24/10/2024
- * @updated 16/01/2025
+ * @updated 07/06/2025
  */
 
 @Getter @Setter @AllArgsConstructor
@@ -65,6 +66,17 @@ public class Session {
     }
     
     public Session(TwitterSession session) {
+        // Se calcula la fecha de expiración
+        ZonedDateTime fechaExpiracionTemp = ZonedDateTime.now().plusSeconds(session.getExpires_in());
+        ZonedDateTime fechaExpiracion = fechaExpiracionTemp.minusMinutes(5L);
+        
+        this.accessToken = session.getAccess_token();
+        this.validoHasta = fechaExpiracion;
+        this.refreshToken = session.getRefresh_token();
+        this.ultimoRefresco = ZonedDateTime.now();
+    }
+    
+    public Session(TumblrSessionResponse session) {
         // Se calcula la fecha de expiración
         ZonedDateTime fechaExpiracionTemp = ZonedDateTime.now().plusSeconds(session.getExpires_in());
         ZonedDateTime fechaExpiracion = fechaExpiracionTemp.minusMinutes(5L);

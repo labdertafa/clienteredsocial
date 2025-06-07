@@ -3,9 +3,9 @@ package com.laboratorio.clienteredsocial.model;
 /**
  *
  * @author Rafael
- * @version 1.0
+ * @version 1.1
  * @created 26/07/2024
- * @updated 19/12/2024
+ * @updated 07/06/2025
  */
 public enum NombreRedSocial {
     MASTODON(1),
@@ -20,7 +20,8 @@ public enum NombreRedSocial {
     GAB(10),
     MINDS(11),
     PARLER(12),
-    TWITTER(13);
+    TWITTER(13),
+    TUMBLR(14);
     
     private final int value;
     
