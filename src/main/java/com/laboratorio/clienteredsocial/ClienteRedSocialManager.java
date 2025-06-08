@@ -22,13 +22,14 @@ import static com.laboratorio.clienteredsocial.model.NombreRedSocial.*;
  * @author Rafael
  * @version 1.2
  * @created 12/10/2024
- * @updated 07/06/2025
+ * @updated 08/06/2025
  */
 public class ClienteRedSocialManager {
     private ClienteRedSocialManager() {
     }
     
-    public static ClienteRedSocial getRedSocialInstance(NombreRedSocial redSocial, String userId, String accessToken, String urlBase, String username, String password) {
+    public static ClienteRedSocial getRedSocialInstance(NombreRedSocial redSocial, String userId, String accessToken, String urlBase,
+            String username, String password, String appClientId, String appClientSecret) {
         switch (redSocial) {
             case MASTODON -> {
                 return new ClienteRedSocialMastodon(urlBase, accessToken);
@@ -69,7 +70,7 @@ public class ClienteRedSocialManager {
             }
             case TUMBLR -> {
                 // En el parámetro username se recibe el blog en el cual se debe postear
-                return new ClienteRedSocialTumblr(accessToken, username);
+                return new ClienteRedSocialTumblr(accessToken, username, appClientId, appClientSecret);
             }
             default -> {
                 throw new ClienteRedSocialException("Error, red social no implementada: " + redSocial.name());

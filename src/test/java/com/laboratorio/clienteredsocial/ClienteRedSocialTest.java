@@ -20,15 +20,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Rafael
  * @version 1.2
  * @created 12/10/2024
- * @updated 04/03/2025
+ * @updated 08/06/2025
  */
 public class ClienteRedSocialTest {
     protected static final Logger log = LogManager.getLogger(ClienteRedSocialTest.class);
 
-    private void verificarPosiblesSeguidores(NombreRedSocial nombreRedSocial, String accountId, String accessToken, String urlBase, String username, String password) throws Exception {
+    private void verificarPosiblesSeguidores(NombreRedSocial nombreRedSocial, String accountId, String accessToken, String urlBase,
+            String username, String password, String appClientId, String appClientSecret) throws Exception {
         int quantity = 50;
         Set<Account> accounts = new HashSet<>();
-        ClienteRedSocial cliente = ClienteRedSocialManager.getRedSocialInstance(nombreRedSocial, accountId, accessToken, urlBase, username, password);
+        ClienteRedSocial cliente = ClienteRedSocialManager.getRedSocialInstance(nombreRedSocial, accountId, accessToken, urlBase,
+                username, password, appClientId, appClientSecret);
 
         List<Status> statuses = cliente.getGlobalTimeline(quantity);
 

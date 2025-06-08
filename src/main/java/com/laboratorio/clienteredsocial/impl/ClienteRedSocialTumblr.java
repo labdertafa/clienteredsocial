@@ -20,14 +20,18 @@ import java.util.List;
  * @author Rafael
  * @version 1.0
  * @created 07/06/2025
- * @updated 07/06/2025
+ * @updated 08/06/2025
  */
 public class ClienteRedSocialTumblr implements ClienteRedSocial {
     private final String accessToken;
+    private final String appClientId;
+    private final String appClientSecret;
     private final TumblrStatusApi statusApi;
 
-    public ClienteRedSocialTumblr(String accessToken, String blog) {
+    public ClienteRedSocialTumblr(String accessToken, String blog, String appClientId, String appClientSecret) {
         this.accessToken = accessToken;
+        this.appClientId = appClientId;
+        this.appClientSecret = appClientSecret;
         this.statusApi = new TumblrStatusApiImpl(this.accessToken, blog);
     }
     
@@ -39,7 +43,7 @@ public class ClienteRedSocialTumblr implements ClienteRedSocial {
     @Override
     public Session refreshSession(String email, String refreshToken) throws Exception {
         TumblrSessionApi sessionApi = new TumblrSessionApiImpl(this.accessToken);
-        TumblrSessionResponse session = sessionApi.refreshSession(refreshToken);
+        TumblrSessionResponse session = sessionApi.refreshSession(this.appClientId, this.appClientSecret, refreshToken);
         return new Session(session);
     }
 
